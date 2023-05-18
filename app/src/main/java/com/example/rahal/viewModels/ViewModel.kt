@@ -8,14 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
 import com.example.rahal.data.search.City
 import com.example.rahal.remove2.Restaurant
-import com.example.rahal.repositories.Repository
+import com.example.rahal.repositories.Repo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ViewModel @Inject constructor(
-    val repository: Repository
+    val repository: Repo
 ): ViewModel(){
 
     private val _getRecommendedMutableLiveData = MutableLiveData<List<Place>>()

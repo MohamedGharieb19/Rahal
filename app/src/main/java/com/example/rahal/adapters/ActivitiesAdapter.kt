@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rahal.R
-import com.example.rahal.data.Place
-import com.example.rahal.data.activites.ActivitiesTypes
+
 import com.example.rahal.databinding.CustomCircularItemForRecyclerViewBinding
 
 class ActivitiesAdapter():RecyclerView.Adapter<ActivitiesAdapter.viewHolder>() {
