@@ -5,10 +5,8 @@ import com.example.rahal.api.HomeApi
 import com.example.rahal.data.Place
 import com.example.rahal.data.PlaceList
 import com.example.rahal.data.activites.Activities
-import com.example.rahal.data.activites.ActivitiesTypes
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.search.Search
-import com.example.rahal.data.search.SearchList
 import com.example.rahal.database.PlaceDataBase
 import com.example.rahal.remove2.List
 import retrofit2.Response
@@ -40,11 +38,40 @@ class Repository @Inject constructor(
         return response
     }
 
-
     suspend fun getRecommended(sort: String): Response<PlaceList>{
         val response = homeApi.getAttractions(sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.code()}")
+        }else {
+            Log.d("TestApp","Failed to connected getAttractions(): ${response.code()}")
+        }
+        return response
+    }
+
+    suspend fun getRecommendedForSpecificCity(cityName: String): Response<Content>{
+        val response = homeApi.getAttractionsForSpecificCity(cityName)
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
+        }else {
+            Log.d("TestApp","Failed to connected getAttractions(): ${response.code()}")
+        }
+        return response
+    }
+
+    suspend fun getTopRated(sort: String): Response<PlaceList>{
+        val response = homeApi.getAttractions(sort)
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getAttractions() : ${response.code()}")
+        }else {
+            Log.d("TestApp","Failed to connected getAttractions(): ${response.code()}")
+        }
+        return response
+    }
+
+    suspend fun getTopRatedForSpecificCity(cityName: String): Response<Content>{
+        val response = homeApi.getAttractionsForSpecificCity(cityName)
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
         }else {
             Log.d("TestApp","Failed to connected getAttractions(): ${response.code()}")
         }
@@ -67,17 +94,6 @@ class Repository @Inject constructor(
             Log.d("TestApp","Success to connect getcites() : ${response.code()}")
         }else {
             Log.d("TestApp","Failed to connected getcites(): ${response.code()}")
-        }
-        return response
-    }
-
-
-    suspend fun getTopRated(sort: String): Response<PlaceList>{
-        val response = homeApi.getAttractions(sort)
-        if (response.isSuccessful){
-            Log.d("TestApp","Success to connect getAttractions() : ${response.code()}")
-        }else {
-            Log.d("TestApp","Failed to connected getAttractions(): ${response.code()}")
         }
         return response
     }

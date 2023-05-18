@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ViewAllActivitiesFragment : Fragment() {
     private lateinit var binding:FragmentViewAllActivitesBinding
     private lateinit var title: TextView
+    private lateinit var city: TextView
     private lateinit var backButton:ImageView
     private lateinit var viewAllAdapter: ViewAllAdapter
     private val viewModel: ViewModel by viewModels()
@@ -54,32 +55,55 @@ class ViewAllActivitiesFragment : Fragment() {
     private fun intilaizeVariables(){
         backButton = binding.backArrowButton
         title = binding.titleTextView
+        city = binding.cityTextView
     }
 
     private fun getData(){
         val data = arguments
         if (data != null){
             title.text = data.getString("title").toString()
+            city.text = data.getString("city").toString()
         }
     }
 
     private fun fetchData(){
         setupRecyclerView()
         if (title.text == "Recommended"){
-            viewModel.getRecommended()
-            viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
-                viewAllAdapter.differ.submitList(it)
-            })
+            if (city.text == "City"){
+                viewModel.getRecommended()
+                viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }else{
+                viewModel.getRecommendedForSpecificCity(city.text.toString())
+                viewModel.getRecommendedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }
         }else if (title.text == "Top rated places"){
-            viewModel.getTopRated()
-            viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
-                viewAllAdapter.differ.submitList(it)
-            })
+            if (city.text == "City") {
+                viewModel.getTopRated()
+                viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }else{
+                viewModel.getTopRatedForSpecificCity(city.text.toString())
+                viewModel.getTopRatedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }
         } else {
-            viewModel.getContentOfActivities("alexandria",title.text.toString())
-            viewModel.getContentActivitiesLiveData.observe(viewLifecycleOwner, Observer {
-                viewAllAdapter.differ.submitList(it)
-            })
+            if (city.text == "City") {
+                viewModel.getContentOfActivities("cairo",title.text.toString())
+                viewModel.getContentActivitiesLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }else{
+                viewModel.getContentOfActivities(city.text.toString(),title.text.toString())
+                viewModel.getContentActivitiesLiveData.observe(viewLifecycleOwner, Observer {
+                    viewAllAdapter.differ.submitList(it)
+                })
+            }
         }
     }
 

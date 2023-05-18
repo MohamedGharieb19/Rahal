@@ -35,10 +35,22 @@ interface HomeApi {
         @Body forgetPasswordRequest: ForgetPasswordRequest
     )
 
+
+
+
+
     @GET("attractions")
     suspend fun getAttractions(
         @Query("limit") sort: String
     ): Response<PlaceList>
+
+    @GET("cities/city/{city}/attractions")
+    suspend fun getAttractionsForSpecificCity(
+        @Path("city") city: String,
+    ): Response<Content>
+
+
+
 
     @GET("cities/city/{city}/restaurants")
     suspend fun getNew(
@@ -46,12 +58,10 @@ interface HomeApi {
         @Query("limit") sort: String
     ): Response<List>
 
-
     @GET("cities/activties/city/{city}/attractions")
     suspend fun getActivities(
         @Path("city") city: String
     ): Response<Activities>
-
 
     @GET("cities/activties/city/{city}/activity/{type}/attractions")
     suspend fun getContentOfActivites(

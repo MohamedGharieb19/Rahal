@@ -21,6 +21,12 @@ class ViewModel @Inject constructor(
     private val _getRecommendedMutableLiveData = MutableLiveData<List<Place>>()
     val getRecommendedLiveData: LiveData<List<Place>> = _getRecommendedMutableLiveData
 
+    private val _getRecommendedForSpecificCityMutableLiveData = MutableLiveData<List<Place>>()
+    val getRecommendedForSpecificCityLiveData: LiveData<List<Place>> = _getRecommendedForSpecificCityMutableLiveData
+
+    private val _getTopRatedForSpecificCityMutableLiveData = MutableLiveData<List<Place>>()
+    val getTopRatedForSpecificCityLiveData: LiveData<List<Place>> = _getTopRatedForSpecificCityMutableLiveData
+
     private val _getTopRatedMutableLiveData = MutableLiveData<List<Place>>()
     val getTopRatedLiveData: LiveData<List<Place>> = _getTopRatedMutableLiveData
 
@@ -35,6 +41,8 @@ class ViewModel @Inject constructor(
 
     private val _getSearchMutableLiveData = MutableLiveData<List<City>>()
     val getSearchLiveData: LiveData<List<City>> = _getSearchMutableLiveData
+
+
     fun getRecommended(){
         viewModelScope.launch {
             try {
@@ -42,6 +50,51 @@ class ViewModel @Inject constructor(
 
                 response.body()!!.data.docuemnts.let {
                     _getRecommendedMutableLiveData.postValue(it)
+                }
+
+            }catch (t:Throwable){
+                Log.d("testApp",t.message.toString()+ " Error getRecommended")
+            }
+        }
+    }
+
+    fun getRecommendedForSpecificCity(cityName: String){
+        viewModelScope.launch {
+            try {
+                val response = repository.getRecommendedForSpecificCity(cityName)
+
+                response.body()!!.data.attractions.let {
+                    _getRecommendedForSpecificCityMutableLiveData.postValue(it)
+                }
+
+            }catch (t:Throwable){
+                Log.d("testApp",t.message.toString()+ " Error getRecommended")
+            }
+        }
+    }
+
+    fun getTopRated(){
+        viewModelScope.launch {
+            try {
+                val response = repository.getTopRated("10")
+
+                response.body()!!.data.docuemnts.let {
+                    _getTopRatedMutableLiveData.postValue(it)
+                }
+
+            }catch (t:Throwable){
+                Log.d("testApp",t.message.toString()+ " Error getTopRated")
+            }
+        }
+    }
+
+    fun getTopRatedForSpecificCity(cityName: String){
+        viewModelScope.launch {
+            try {
+                val response = repository.getTopRatedForSpecificCity(cityName)
+
+                response.body()!!.data.attractions.let {
+                    _getTopRatedForSpecificCityMutableLiveData.postValue(it)
                 }
 
             }catch (t:Throwable){
@@ -63,7 +116,6 @@ class ViewModel @Inject constructor(
             }
         }
     }
-
 
     fun getContentOfActivities(cityName: String,type: String){
         viewModelScope.launch {
@@ -91,21 +143,6 @@ class ViewModel @Inject constructor(
 
             }catch (t:Throwable){
                 Log.d("testApp",t.message.toString()+ " Error getNew")
-            }
-        }
-    }
-
-    fun getTopRated(){
-        viewModelScope.launch {
-            try {
-                val response = repository.getTopRated("10")
-
-                response.body()!!.data.docuemnts.let {
-                    _getTopRatedMutableLiveData.postValue(it)
-                }
-
-            }catch (t:Throwable){
-                Log.d("testApp",t.message.toString()+ " Error getTopRated")
             }
         }
     }

@@ -51,6 +51,7 @@ class RecommendedTopRatedAdapter(): RecyclerView.Adapter<RecommendedTopRatedAdap
         Glide.with(holder.itemView).load(data.image).into(holder.binding.imageViewId)
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.placeTextView.text = data.name
+        holder.binding.locationPlace.text = data.location.address
 
         holder.itemView.setOnClickListener {
             onPlaceItemClick.invoke(data)

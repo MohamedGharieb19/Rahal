@@ -23,7 +23,7 @@ class SplashScreenFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         binding = FragmentSplashScreenBinding.inflate(inflater,container,false)

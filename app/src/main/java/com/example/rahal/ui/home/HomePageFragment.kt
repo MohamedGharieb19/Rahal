@@ -85,7 +85,13 @@ class HomePageFragment : Fragment() {
         }
 
         setCity.doAfterTextChanged {
-            viewModel.getNew(setCity.text.toString())
+            //viewModel.getNew(setCity.text.toString())
+
+            getRecommendedForSpecificCity(setCity.text.toString())
+            getTopRatedForSpecificCity(setCity.text.toString())
+            onPlaceRecommendedClick()
+            onPlaceTopRatedClick()
+
         }
 
 
@@ -137,11 +143,40 @@ class HomePageFragment : Fragment() {
             recommendedAdapter.differ.submitList(it)
         })
     }
+
+    private fun getRecommendedForSpecificCity(cityName: String){
+        setupRecommendedRecyclerView()
+        viewModel.getRecommendedForSpecificCity(cityName)
+
+        viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
+            recommendedAdapter.differ.submitList(null)
+        })
+
+        viewModel.getRecommendedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
+            recommendedAdapter.differ.submitList(it)
+        })
+    }
+
+    private fun getTopRatedForSpecificCity(cityName: String){
+        setupTopRatedRecyclerView()
+        viewModel.getTopRatedForSpecificCity(cityName)
+
+        viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
+            topRatedAdapter.differ.submitList(null)
+        })
+
+        viewModel.getTopRatedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
+            topRatedAdapter.differ.submitList(it)
+        })
+    }
+
+
     private fun onActivityClick(){
         activitiesAdapter.onActivityItemClick = {
             val fragment = ViewAllActivitiesFragment()
             val bundle = Bundle()
             bundle.putString("title",it)
+            bundle.putString("city",binding.cityTextView.text.toString())
             fragment.arguments = bundle
             findNavController().navigate(R.id.action_homePageFragment_to_viewAllActivitesFragment,bundle)
                 .toString()
@@ -151,6 +186,7 @@ class HomePageFragment : Fragment() {
         val fragment = ViewAllActivitiesFragment()
         val bundle = Bundle()
         bundle.putString("title",binding.recommendedTextView.text.toString())
+        bundle.putString("city",binding.cityTextView.text.toString())
         fragment.arguments = bundle
         findNavController().navigate(R.id.action_homePageFragment_to_viewAllActivitesFragment,bundle)
     }
@@ -158,6 +194,7 @@ class HomePageFragment : Fragment() {
         val fragment = ViewAllActivitiesFragment()
         val bundle = Bundle()
         bundle.putString("title",binding.topRatedTextView.text.toString())
+        bundle.putString("city",binding.cityTextView.text.toString())
         fragment.arguments = bundle
         findNavController().navigate(R.id.action_homePageFragment_to_viewAllActivitesFragment,bundle)
     }
