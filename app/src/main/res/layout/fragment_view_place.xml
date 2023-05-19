@@ -1,225 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.ViewPlaceFragment">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/back_arrow_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/option_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_option"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/place_name_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="sans-serif"
-        android:text="Bibliotheca Alexandria"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/back_arrow_button"
-        app:layout_constraintEnd_toStartOf="@id/option_button"
-        app:layout_constraintStart_toEndOf="@id/back_arrow_button"
-        app:layout_constraintTop_toTopOf="@id/back_arrow_button" />
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back_arrow_button" />
-
-    <RatingBar
-        android:id="@+id/star_icon"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:numStars="5"
-        android:progressTint="#F2A11E"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view" />
-
-    <TextView
-        android:id="@+id/number_of_reviews_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="1220"
-        android:textColor="#AFADAD"
-        app:layout_constraintBottom_toBottomOf="@id/star_icon"
-        app:layout_constraintStart_toEndOf="@id/star_icon"
-        app:layout_constraintTop_toTopOf="@id/star_icon" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" Review"
-        android:textColor="#AFADAD"
-        app:layout_constraintBottom_toBottomOf="@id/star_icon"
-        app:layout_constraintStart_toEndOf="@id/number_of_reviews_text_view"
-        app:layout_constraintTop_toTopOf="@id/star_icon" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#FCECD280"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/star_icon">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/description_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@string/description"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/description_body_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/body"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/description_title_text_view"
-                app:layout_constraintTop_toBottomOf="@id/description_title_text_view" />
-
-            <TextView
-                android:id="@+id/working_time"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Our working hours are from 9:00AM to 6:00PM"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@id/description_body_text_view"
-                app:layout_constraintStart_toStartOf="@id/description_body_text_view"
-                app:layout_constraintTop_toBottomOf="@id/description_body_text_view" />
-
-            <TextView
-                android:id="@+id/price_range_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_price_range"
-                android:gravity="center"
-                android:text="Price Range: "
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/working_time"
-                app:layout_constraintTop_toBottomOf="@id/working_time" />
-
-            <TextView
-                android:id="@+id/price_range"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10$ - 30$"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/price_range_icon"
-                app:layout_constraintStart_toEndOf="@id/price_range_icon"
-                app:layout_constraintTop_toTopOf="@id/price_range_icon" />
-
-            <TextView
-                android:id="@+id/opening_days"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_calendar"
-                android:gravity="center"
-                android:text=" Sunday - Friday"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/working_time"
-                app:layout_constraintTop_toBottomOf="@id/price_range_icon" />
-
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:drawableStart="@drawable/ic_baseline_location"
-                android:gravity="center"
-                android:text="Alexandria, Egpyt"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/opening_days"
-                app:layout_constraintTop_toBottomOf="@id/opening_days" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@id/add_to_plan_button"
-        app:layout_constraintEnd_toEndOf="@id/card_view"
-        app:layout_constraintStart_toStartOf="@id/card_view"
-        app:layout_constraintTop_toBottomOf="@id/card_view">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.ViewPlaceFragment">
 
         <ImageView
-            android:id="@+id/map_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/option_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_option"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/place_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/place_name"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/option_button"
+            app:layout_constraintEnd_toStartOf="@id/option_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/option_button" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/maps" />
-    </androidx.cardview.widget.CardView>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/place_name_text_view" />
+
+        <RatingBar
+            android:id="@+id/star_icon"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:numStars="5"
+            android:progressTint="#F2A11E"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view" />
+
+        <TextView
+            android:id="@+id/number_of_reviews_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/_1220"
+            android:textColor="#AFADAD"
+            app:layout_constraintBottom_toBottomOf="@id/star_icon"
+            app:layout_constraintStart_toEndOf="@id/star_icon"
+            app:layout_constraintTop_toTopOf="@id/star_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/review"
+            android:textColor="#AFADAD"
+            app:layout_constraintBottom_toBottomOf="@id/star_icon"
+            app:layout_constraintStart_toEndOf="@id/number_of_reviews_text_view"
+            app:layout_constraintTop_toTopOf="@id/star_icon" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#FCECD280"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/star_icon">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/description_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/description"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/description_body_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/body"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/description_title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/description_title_text_view" />
+
+                <TextView
+                    android:id="@+id/working_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/our_working_hours_are_from_9_00am_to_6_00pm"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@id/description_body_text_view"
+                    app:layout_constraintStart_toStartOf="@id/description_body_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/description_body_text_view" />
+
+                <TextView
+                    android:id="@+id/price_range_icon"
+                    android:layout_width="94dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/price_range"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_price_range"
+                    app:layout_constraintStart_toStartOf="@id/working_time"
+                    app:layout_constraintTop_toBottomOf="@id/working_time"
+                    tools:ignore="TextSizeCheck" />
+
+                <TextView
+                    android:id="@+id/price_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/_10_30"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/price_range_icon"
+                    app:layout_constraintStart_toEndOf="@id/price_range_icon"
+                    app:layout_constraintTop_toTopOf="@id/price_range_icon" />
+
+                <TextView
+                    android:id="@+id/opening_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/sunday_friday"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_calendar"
+                    app:layout_constraintStart_toStartOf="@id/working_time"
+                    app:layout_constraintTop_toBottomOf="@id/price_range_icon" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/location"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_baseline_location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/opening_days"
+                    app:layout_constraintTop_toBottomOf="@id/opening_days" />
 
 
-    <Button
-        android:id="@+id/add_to_plan_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/add_to_plan"
-        android:fontFamily="sans-serif"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/card_view"
-        app:layout_constraintStart_toStartOf="@id/card_view" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@id/add_to_plan_button"
+            app:layout_constraintEnd_toEndOf="@id/card_view"
+            app:layout_constraintStart_toStartOf="@id/card_view"
+            app:layout_constraintTop_toBottomOf="@id/card_view">
+
+            <ImageView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/maps" />
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/add_to_plan_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/add_to_plan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/card_view"
+            app:layout_constraintStart_toStartOf="@id/card_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

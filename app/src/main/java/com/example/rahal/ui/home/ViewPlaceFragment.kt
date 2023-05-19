@@ -52,20 +52,19 @@ class ViewPlaceFragment : Fragment() {
 
         options.setOnClickListener { showPopupMenu() }
 
-        binding.mapView.setOnClickListener {
-            val pattern = Pattern.compile("\\[(.*),(.*)\\]")
-            val matcher = pattern.matcher(cordinates)
-            if (matcher.find()) {
-                val latitude = matcher.group(1)
-                val longitude = matcher.group(2)
+        binding.mapView.setOnClickListener {openMaps() }
+    }
 
-                // Create intent to open Google Maps
-                val intentUri = "geo:$latitude,$longitude"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri))
-                //intent.setPackage("com.google.android.apps.maps")
-                startActivity(intent)
-            }
+    private fun openMaps(){
+        val pattern = Pattern.compile("\\[(.*),(.*)\\]")
+        val matcher = pattern.matcher(cordinates)
+        if (matcher.find()) {
+            val latitude = matcher.group(1)
+            val longitude = matcher.group(2)
 
+            val intentUri = "geo:$latitude,$longitude"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri))
+            startActivity(intent)
         }
     }
 

@@ -25,7 +25,6 @@ class ViewAllActivitiesFragment : Fragment() {
     private lateinit var title: TextView
     private lateinit var city: TextView
     private lateinit var searchBar:EditText
-    private lateinit var backButton:ImageView
     private lateinit var viewAllAdapter: ViewAllAdapter
     private val viewModel: ViewModel by viewModels()
     override fun onCreateView(
@@ -47,10 +46,6 @@ class ViewAllActivitiesFragment : Fragment() {
         fetchData()
         onPlaceClick()
 
-        backButton.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_viewAllActivitesFragment_to_homePageFragment)
-        }
-
         searchBar.setOnClickListener {
             findNavController().navigate(R.id.action_viewAllActivitesFragment_to_searchFragment)
         }
@@ -60,7 +55,6 @@ class ViewAllActivitiesFragment : Fragment() {
     }
 
     private fun intilaizeVariables(){
-        backButton = binding.backArrowButton
         title = binding.titleTextView
         city = binding.cityTextView
         searchBar = binding.searchBar

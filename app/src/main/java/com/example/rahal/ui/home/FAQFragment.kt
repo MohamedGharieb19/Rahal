@@ -21,7 +21,7 @@ class FAQFragment : Fragment() {
     private lateinit var binding: FragmentFaqBinding
     private lateinit var recyclerview: RecyclerView
     private val data = ArrayList<FaqItem>()
-    private lateinit var backArrowButton:ImageView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,15 +44,12 @@ class FAQFragment : Fragment() {
 
         recyclerView()
 
-        backArrowButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_FAQFragment_to_homePageFragment)
-        }
+
 
     }
 
     private fun intilaizeVariables() {
         recyclerview = binding.recylcerView
-        backArrowButton = binding.backArrowButton
 
     }
 
