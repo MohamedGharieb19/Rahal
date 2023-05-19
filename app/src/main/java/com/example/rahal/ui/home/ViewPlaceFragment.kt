@@ -1,7 +1,6 @@
 package com.example.rahal.ui.home
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,14 +14,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.rahal.R
-import com.example.rahal.data.Place
 import com.example.rahal.databinding.FragmentViewPlaceBinding
-import com.example.rahal.remove.SliderAdapter
-import com.example.rahal.remove.SliderItem
 import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
-import kotlin.math.log
 
 
 @AndroidEntryPoint

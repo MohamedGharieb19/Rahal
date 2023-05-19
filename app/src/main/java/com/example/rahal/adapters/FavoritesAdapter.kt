@@ -14,6 +14,8 @@ class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.viewHolder>()  {
 
     lateinit var onFavoritesIconClick: ((Place)  -> Unit )
 
+    lateinit var onPlaceItemClick: ((Place)  -> Unit )
+
     private val diffUtil = object : DiffUtil.ItemCallback<Place>(){
         override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
             return oldItem._id == newItem._id
@@ -44,10 +46,15 @@ class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.viewHolder>()  {
         Glide.with(holder.itemView).load(data.image).into(holder.binding.imageViewId)
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.placeTextView.text = data.name
+        holder.binding.locationPlace.text = data.location.address
 
         holder.binding.favoriteIcon.setOnClickListener {
             holder.binding.favoriteIcon.setImageResource(R.drawable.ic_favorite)
             onFavoritesIconClick.invoke(data)
+        }
+
+        holder.itemView.setOnClickListener {
+            onPlaceItemClick.invoke(data)
         }
 
     }

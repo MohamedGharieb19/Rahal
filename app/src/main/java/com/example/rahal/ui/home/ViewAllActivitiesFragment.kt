@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
@@ -23,6 +24,7 @@ class ViewAllActivitiesFragment : Fragment() {
     private lateinit var binding:FragmentViewAllActivitesBinding
     private lateinit var title: TextView
     private lateinit var city: TextView
+    private lateinit var searchBar:EditText
     private lateinit var backButton:ImageView
     private lateinit var viewAllAdapter: ViewAllAdapter
     private val viewModel: ViewModel by viewModels()
@@ -49,6 +51,11 @@ class ViewAllActivitiesFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_viewAllActivitesFragment_to_homePageFragment)
         }
 
+        searchBar.setOnClickListener {
+            findNavController().navigate(R.id.action_viewAllActivitesFragment_to_searchFragment)
+        }
+
+
 
     }
 
@@ -56,6 +63,7 @@ class ViewAllActivitiesFragment : Fragment() {
         backButton = binding.backArrowButton
         title = binding.titleTextView
         city = binding.cityTextView
+        searchBar = binding.searchBar
     }
 
     private fun getData(){
@@ -122,6 +130,7 @@ class ViewAllActivitiesFragment : Fragment() {
             bundle.putDouble("rate",data.rating)
             bundle.putString("title",data.name)
             bundle.putString("reviews",data.num_reviews.toString())
+            bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
             bundle.putString("location",data.location.coordiantes.toString())

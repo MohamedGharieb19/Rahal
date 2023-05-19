@@ -32,7 +32,11 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.rahal.ui.home.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_viewPlaceFragment"
+            app:destination="@id/viewPlaceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.rahal.ui.home.ProfileFragment"
@@ -76,6 +80,9 @@
         <action
             android:id="@+id/action_viewAllActivitesFragment_to_viewPlaceFragment"
             app:destination="@id/viewPlaceFragment" />
+        <action
+            android:id="@+id/action_viewAllActivitesFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
@@ -100,6 +107,9 @@
         <action
             android:id="@+id/action_viewPlaceFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+        <action
+            android:id="@+id/action_viewPlaceFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/planFragment"

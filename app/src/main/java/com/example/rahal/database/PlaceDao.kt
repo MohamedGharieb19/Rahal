@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.rahal.data.Place
 
+
 @Dao
 interface PlaceDao {
 

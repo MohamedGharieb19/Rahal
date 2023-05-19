@@ -13,17 +13,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.rahal.*
 import com.example.rahal.api.HomeApi
-import com.example.rahal.api.UserApi
 import com.example.rahal.data.UserRequest
 import com.example.rahal.data.UserResponse
-import com.example.rahal.databinding.FragmentHomePageBinding
 import com.example.rahal.databinding.FragmentLogInUserBinding
 import com.example.rahal.module.Retrofit
 import com.example.rahal.ui.home.HomeActivity
-import com.example.rahal.ui.home.HomePageFragment
 import com.example.rahal.ui.home.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call

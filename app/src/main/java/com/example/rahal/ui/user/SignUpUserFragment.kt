@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.rahal.*
 import com.example.rahal.api.HomeApi
-import com.example.rahal.api.UserApi
 import com.example.rahal.data.RegisterUserRequest
 import com.example.rahal.data.UserResponse
 import com.example.rahal.databinding.FragmentSignUpUserBinding

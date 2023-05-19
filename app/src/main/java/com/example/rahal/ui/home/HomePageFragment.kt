@@ -1,7 +1,6 @@
 package com.example.rahal.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.PopupMenu
-import android.widget.SearchView
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
@@ -19,13 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.rahal.R
 import com.example.rahal.adapters.ActivitiesAdapter
 import com.example.rahal.adapters.RecommendedTopRatedAdapter
-import com.example.rahal.databinding.CustomRectangleItemForRecylerViewBinding
 import com.example.rahal.databinding.FragmentHomePageBinding
-import com.example.rahal.remove.Circle
-import com.example.rahal.remove.CircleAdapter
 import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class HomePageFragment : Fragment() {
@@ -61,9 +55,6 @@ class HomePageFragment : Fragment() {
         getActivities()
         onActivityClick()
 
-        viewModel.getContentOfActivities("cairo","Shopping")
-
-
         helpIcon.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_homePageFragment_to_FAQFragment)
         }
@@ -85,12 +76,11 @@ class HomePageFragment : Fragment() {
         }
 
         setCity.doAfterTextChanged {
-            //viewModel.getNew(setCity.text.toString())
-
             getRecommendedForSpecificCity(setCity.text.toString())
             getTopRatedForSpecificCity(setCity.text.toString())
             onPlaceRecommendedClick()
             onPlaceTopRatedClick()
+            onFavoritesIconClick()
 
         }
 
@@ -214,6 +204,7 @@ class HomePageFragment : Fragment() {
             bundle.putDouble("rate",data.rating)
             bundle.putString("title",data.name)
             bundle.putString("reviews",data.num_reviews.toString())
+            bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
             bundle.putString("location",data.location.coordiantes.toString())
@@ -229,6 +220,7 @@ class HomePageFragment : Fragment() {
             bundle.putDouble("rate",data.rating)
             bundle.putString("title",data.name)
             bundle.putString("reviews",data.num_reviews.toString())
+            bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
             bundle.putString("location",data.location.coordiantes.toString())

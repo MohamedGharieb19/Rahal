@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "place")
 data class Place(
+    val __v: Int,
     @PrimaryKey
     val _id: String,
     val activityDesctiptor: List<String>,
@@ -14,5 +15,6 @@ data class Place(
     val location: Location,
     val name: String,
     val num_reviews: Int,
+    val numberOfReviews: Int,
     val rating: Double
 )

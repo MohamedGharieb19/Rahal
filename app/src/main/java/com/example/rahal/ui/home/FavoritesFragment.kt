@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rahal.R
 import com.example.rahal.adapters.FavoritesAdapter
-import com.example.rahal.data.Place
 import com.example.rahal.databinding.FragmentFavoritesBinding
 import com.example.rahal.viewModels.ViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -37,6 +38,7 @@ class FavoritesFragment : Fragment() {
 
         getFavorites()
         deleteFavorite()
+        onPlaceClick()
 
     }
 
@@ -82,6 +84,23 @@ class FavoritesFragment : Fragment() {
     private fun hideNoFavorites(){
         binding.backgroundImageView.visibility = View.INVISIBLE
         binding.resultsTextView.visibility = View.INVISIBLE
+    }
+
+    private fun onPlaceClick(){
+        favoritesAdapter.onPlaceItemClick = { data ->
+            val fragment = ViewPlaceFragment()
+            val bundle = Bundle()
+            bundle.putString("image",data.image)
+            bundle.putDouble("rate",data.rating)
+            bundle.putString("title",data.name)
+            bundle.putString("reviews",data.num_reviews.toString())
+            bundle.putString("reviews",data.numberOfReviews.toString())
+            bundle.putString("description",data.description)
+            bundle.putString("address",data.location.address)
+            bundle.putString("location",data.location.coordiantes.toString())
+            fragment.arguments = bundle
+            findNavController().navigate(R.id.action_favoritesFragment_to_viewPlaceFragment,bundle)
+        }
     }
 
 }
