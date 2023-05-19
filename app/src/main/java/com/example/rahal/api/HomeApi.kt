@@ -49,9 +49,6 @@ interface HomeApi {
         @Path("city") city: String,
     ): Response<Content>
 
-
-
-
     @GET("cities/city/{city}/restaurants")
     suspend fun getNew(
         @Path("city") city: String,
