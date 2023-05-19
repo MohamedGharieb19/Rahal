@@ -12,7 +12,7 @@ import com.example.rahal.remove2.List
 import retrofit2.Response
 import javax.inject.Inject
 
-class Repo @Inject constructor(
+class Repository @Inject constructor(
     private val homeApi: HomeApi,
     private val placeDataBase: PlaceDataBase
 ) {
@@ -28,7 +28,7 @@ class Repo @Inject constructor(
         database.delete(place)
     }
 
-    suspend fun getSearch(searchQuery: String): Response<Search> {
+    suspend fun getSearch(searchQuery: String): Response<Search>{
         val response = homeApi.searchForPlaces(searchQuery)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getSearch() : ${response.body()}")
@@ -38,7 +38,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getRecommended(sort: String): Response<PlaceList> {
+    suspend fun getRecommended(sort: String): Response<PlaceList>{
         val response = homeApi.getAttractions(sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.code()}")
@@ -48,7 +48,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getRecommendedForSpecificCity(cityName: String): Response<Content> {
+    suspend fun getRecommendedForSpecificCity(cityName: String): Response<Content>{
         val response = homeApi.getAttractionsForSpecificCity(cityName)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
@@ -58,7 +58,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getTopRated(sort: String): Response<PlaceList> {
+    suspend fun getTopRated(sort: String): Response<PlaceList>{
         val response = homeApi.getAttractions(sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.code()}")
@@ -68,7 +68,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getTopRatedForSpecificCity(cityName: String): Response<Content> {
+    suspend fun getTopRatedForSpecificCity(cityName: String): Response<Content>{
         val response = homeApi.getAttractionsForSpecificCity(cityName)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
@@ -78,7 +78,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getContentOfActivities(cityName: String,type:String): Response<Content> {
+    suspend fun getContentOfActivities(cityName: String,type:String): Response<Content>{
         val response = homeApi.getContentOfActivites(cityName,type)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getContentOfActivities() : ${response.code()}")
@@ -88,7 +88,7 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getNew(cityName:String,sort: String): Response<List> {
+    suspend fun getNew(cityName:String,sort: String): Response<List>{
         val response = homeApi.getNew(cityName,sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getcites() : ${response.code()}")
@@ -98,14 +98,13 @@ class Repo @Inject constructor(
         return response
     }
 
-    suspend fun getActivities(city: String): Response<Activities> {
+    suspend fun getActivities(city: String): Response<Activities>{
         val response = homeApi.getActivities(city)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getActivities() : ${response.code()}")
         }else {
             Log.d("TestApp","Failed to connected getActivities(): ${response.code()}")
         }
-
         return response
     }
 

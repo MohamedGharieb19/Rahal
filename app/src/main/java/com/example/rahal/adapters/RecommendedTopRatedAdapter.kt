@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.rahal.R
 import com.example.rahal.data.Place
 import com.example.rahal.databinding.CustomRectangleItemForRecylcerViewHomePageBinding
-import com.example.rahal.repositories.Repo
+import com.example.rahal.repositories.Repository
 import com.example.rahal.viewModels.ViewModel
 
 class RecommendedTopRatedAdapter(): RecyclerView.Adapter<RecommendedTopRatedAdapter.viewHolder>() {
