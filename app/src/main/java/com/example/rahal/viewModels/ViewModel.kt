@@ -43,10 +43,10 @@ class ViewModel @Inject constructor(
     val getSearchLiveData: LiveData<List<City>> = _getSearchMutableLiveData
 
 
-    fun getRecommended(){
+    fun getRecommended(limit:String){
         viewModelScope.launch {
             try {
-                val response = repository.getRecommended("10")
+                val response = repository.getRecommended(limit)
 
                 response.body()!!.data.docuemnts.let {
                     _getRecommendedMutableLiveData.postValue(it)
@@ -73,10 +73,10 @@ class ViewModel @Inject constructor(
         }
     }
 
-    fun getTopRated(){
+    fun getTopRated(limit:String){
         viewModelScope.launch {
             try {
-                val response = repository.getTopRated("10")
+                val response = repository.getTopRated(limit)
 
                 response.body()!!.data.docuemnts.let {
                     _getTopRatedMutableLiveData.postValue(it)

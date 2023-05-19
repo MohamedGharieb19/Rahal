@@ -121,14 +121,14 @@ class HomePageFragment : Fragment() {
     }
     private fun getTopRated(){
         setupTopRatedRecyclerView()
-        viewModel.getTopRated()
+        viewModel.getTopRated("10")
         viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
             topRatedAdapter.differ.submitList(it)
         })
     }
     private fun getRecommended(){
         setupRecommendedRecyclerView()
-        viewModel.getRecommended()
+        viewModel.getRecommended("10")
         viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
             recommendedAdapter.differ.submitList(it)
         })

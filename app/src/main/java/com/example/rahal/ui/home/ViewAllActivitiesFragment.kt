@@ -72,7 +72,7 @@ class ViewAllActivitiesFragment : Fragment() {
         setupRecyclerView()
         if (title.text == "Recommended"){
             if (city.text == "City"){
-                viewModel.getRecommended()
+                viewModel.getRecommended("*")
                 viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
                     viewAllAdapter.differ.submitList(it)
                 })
@@ -84,7 +84,7 @@ class ViewAllActivitiesFragment : Fragment() {
             }
         }else if (title.text == "Top rated places"){
             if (city.text == "City") {
-                viewModel.getTopRated()
+                viewModel.getTopRated("*")
                 viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
                     viewAllAdapter.differ.submitList(it)
                 })
