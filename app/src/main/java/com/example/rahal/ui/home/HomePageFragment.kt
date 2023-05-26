@@ -43,6 +43,7 @@ class HomePageFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -71,22 +72,25 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_searchFragment)
         }
 
+
         setCity.setOnClickListener {
             showPopupMenu()
         }
+            val savedCity=viewModel.getSavedCity()
+        if (savedCity!=null){
+            setCity.text=savedCity
+        }
 
-        setCity.doAfterTextChanged {
+      setCity.doAfterTextChanged {
             getRecommendedForSpecificCity(setCity.text.toString())
             getTopRatedForSpecificCity(setCity.text.toString())
             onPlaceRecommendedClick()
             onPlaceTopRatedClick()
             onFavoritesIconClick()
-
         }
 
 
     }
-
     private fun intilaizeVariables(){
         recommendedViewAll = binding.recommendedViewAll
         topRatedViewAll = binding.topRatedViewAll
@@ -233,11 +237,17 @@ class HomePageFragment : Fragment() {
         popupMenu.menuInflater.inflate(R.menu.cites_name, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             setCity.text = menuItem.title.toString()
+
             return@setOnMenuItemClickListener true
         }
         popupMenu.show()
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveCity(setCity.text.toString())
+    }
+//
 }
 
 

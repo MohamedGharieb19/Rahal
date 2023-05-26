@@ -107,5 +107,15 @@ class Repository @Inject constructor(
         }
         return response
     }
+    private var savedText: String? = null
+
+
+    fun saveCity(text: String) {
+        savedText = text
+    }
+
+    fun getSavedCity(): String? {
+        return savedText
+    }
 
 }
