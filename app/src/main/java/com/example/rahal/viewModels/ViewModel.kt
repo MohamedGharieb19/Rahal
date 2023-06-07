@@ -210,4 +210,12 @@ class ViewModel @Inject constructor(
 
     fun getFavorites() = repository.getFavoritesPlaces
 
+    fun saveCity(text: String) {
+        repository.saveCity(text)
+    }
+
+    fun getSavedCity(): String? {
+        return repository.getSavedCity()
+    }
+
 }

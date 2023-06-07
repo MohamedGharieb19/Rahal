@@ -45,7 +45,9 @@ class RecommendedTopRatedAdapter(): RecyclerView.Adapter<RecommendedTopRatedAdap
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val data = differ.currentList[position]
-        Glide.with(holder.itemView).load(data.image).into(holder.binding.imageViewId)
+        Glide.with(holder.itemView).load(data.image)
+            .placeholder(R.drawable.loading_image_24)
+            .into(holder.binding.imageViewId)
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.placeTextView.text = data.name
         holder.binding.locationPlace.text = data.location.address
@@ -54,8 +56,8 @@ class RecommendedTopRatedAdapter(): RecyclerView.Adapter<RecommendedTopRatedAdap
             onPlaceItemClick.invoke(data)
         }
 
-        holder.binding.favoriteIcon.setOnClickListener {
-            holder.binding.favoriteIcon.setImageResource(R.drawable.ic_favorite)
+        holder.binding.iconFavourite.setOnClickListener {
+            //holder.binding.favoriteIcon.setImageResource(R.drawable.ic_favorite)
             onFavoritesIconClick.invoke(data)
         }
     }

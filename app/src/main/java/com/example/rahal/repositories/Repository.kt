@@ -110,6 +110,16 @@ class Repository @Inject constructor(
         }
         return response
     }
+    private var savedText: String? = null
+
+
+    fun saveCity(text: String) {
+        savedText = text
+    }
+
+    fun getSavedCity(): String? {
+        return savedText
+    }
 
     suspend fun getRecommendedPlans(): Response<suggestedPlans> {
         val response = homeApi.recommendedPlans()
