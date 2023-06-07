@@ -27,7 +27,11 @@
         android:id="@+id/plansFragment"
         android:name="com.example.rahal.ui.home.PlansFragment"
         android:label="fragment_plans"
-        tools:layout="@layout/fragment_plans" />
+        tools:layout="@layout/fragment_plans" >
+        <action
+            android:id="@+id/action_plansFragment_to_planFragment"
+            app:destination="@id/planFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.rahal.ui.home.FavoritesFragment"
@@ -66,7 +70,7 @@
         android:label="fragment_recommended_plans"
         tools:layout="@layout/fragment_recommended_plans" >
         <action
-            android:id="@+id/action_recommendedPlansFragment_to_planFragment2"
+            android:id="@+id/action_recommendedPlansFragment_to_viewPlanFragment"
             app:destination="@id/planFragment" />
     </fragment>
     <fragment
@@ -113,12 +117,15 @@
     </fragment>
     <fragment
         android:id="@+id/planFragment"
-        android:name="com.example.rahal.ui.home.PlanFragment"
+        android:name="com.example.rahal.ui.home.ViewPlanFragment"
         android:label="fragment_plan"
-        tools:layout="@layout/fragment_plan" >
+        tools:layout="@layout/fragment_view_plan" >
         <action
             android:id="@+id/action_planFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_planFragment_to_viewPlaceFragment"
+            app:destination="@id/viewPlaceFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

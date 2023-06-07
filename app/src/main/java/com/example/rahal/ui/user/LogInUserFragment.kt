@@ -83,7 +83,7 @@ class LogInUserFragment : Fragment() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val user = response.body()
                 if (response.code() == 201 && user?.data?.user?.role.toString() == "user") {
-                    Log.e("success", user!!.token.toString())
+                    Log.e("success token", user!!.token.toString())
                     Log.e("success", user!!.data?.user?.role.toString())
                     Log.e("success", user!!.data?.user?.name.toString())
                     Log.e("success", user!!.data?.user?.email.toString())

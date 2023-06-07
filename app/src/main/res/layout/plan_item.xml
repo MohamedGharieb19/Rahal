@@ -53,15 +53,18 @@
 
             <TextView
                 android:id="@+id/place_name_text_view"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Destination 1"
                 android:textColor="#8F9090"
+                android:maxLines="1"
                 android:textSize="16sp"
                 android:layout_marginStart="8dp"
                 android:fontFamily="serif"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintTop_toTopOf="@id/place_image"
                 app:layout_constraintStart_toEndOf="@id/place_image"
+                app:layout_constraintEnd_toEndOf="parent"
 
                 />
 
@@ -92,12 +95,15 @@
 
             <TextView
                 android:id="@+id/location_place"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Alexandria, Egypt"
                 android:textSize="8dp"
+                android:maxLines="1"
                 android:textColor="#AFADAD"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/star_icon"
                 app:layout_constraintTop_toBottomOf="@id/star_icon"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

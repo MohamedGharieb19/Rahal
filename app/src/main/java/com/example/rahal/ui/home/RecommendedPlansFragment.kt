@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.rahal.R
+import com.example.rahal.adapters.RecommendedAdapter
 import com.example.rahal.databinding.FragmentRecommendedPlansBinding
-import com.example.rahal.remove.Circle
-import com.example.rahal.remove.PlansAdapter
+import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecommendedPlansFragment : Fragment() {
     private lateinit var binding: FragmentRecommendedPlansBinding
-    private val myAdapter by lazy { PlansAdapter() }
+    private lateinit var recommendedAdapter: RecommendedAdapter
+    private val viewModel : ViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,15 +26,57 @@ class RecommendedPlansFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentRecommendedPlansBinding.inflate(inflater,container,false)
+        getRecommendedPlans()
+        onPlanClick()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recommendedPlansRecyclerView.adapter = myAdapter
 
-        val item= Circle(1,R.drawable.museums,"Musuems")
-        myAdapter.setCircleData(listOf(item,item,item,item,item,item))
+
+
     }
+
+    private fun getRecommendedPlans(){
+        setupRecyclerView()
+
+//                val request = recommendedResponse()
+//                request.plans = "2"
+//                request.restaurants = "2"
+//                request.attractions = "2"
+        viewModel.getRecommendedPlans()
+        viewModel.getRecommendedPlansLiveData.observe(viewLifecycleOwner, Observer {
+            recommendedAdapter.differ.submitList(it)
+        })
+
+    }
+
+    private fun setupRecyclerView(){
+        recommendedAdapter = RecommendedAdapter()
+        binding.recommendedPlansRecyclerView.apply {
+            adapter = recommendedAdapter
+        }
+
+    }
+
+    private fun onPlanClick(){
+        recommendedAdapter.onPlanClick = {
+            val fragment = ViewPlanFragment()
+            val bundle = Bundle()
+//            val list:List<PlaceInPlan> = data.plan
+//            bundle.putParcelableArrayList("list", ArrayList<List<PlaceInPlan>>)
+
+
+
+            fragment.arguments = bundle
+            findNavController().navigate(R.id.action_plansFragment_to_planFragment)
+            //findNavController().navigate(R.id.action_recommendedPlansFragment_to_planFragmentt,bundle)
+        }
+    }
+
+
+
+
 }

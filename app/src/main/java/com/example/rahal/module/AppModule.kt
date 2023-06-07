@@ -34,7 +34,8 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(HomeApi::class.java)
-
+    //192.168.1.63
+    //192.168.1.9
     @Provides
     @Singleton
     fun provideDataBase(application: Application): PlaceDataBase =

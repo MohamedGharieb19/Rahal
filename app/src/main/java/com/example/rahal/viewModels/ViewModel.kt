@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
 import com.example.rahal.data.search.City
+import com.example.rahal.data.suggestedPlans.PlaceInPlan
+import com.example.rahal.data.suggestedPlans.Plan
 import com.example.rahal.remove2.Restaurant
 import com.example.rahal.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +44,11 @@ class ViewModel @Inject constructor(
     private val _getSearchMutableLiveData = MutableLiveData<List<City>>()
     val getSearchLiveData: LiveData<List<City>> = _getSearchMutableLiveData
 
+    private val _getRecommendedPlansMutableLiveData = MutableLiveData<List<Plan>>()
+    val getRecommendedPlansLiveData: LiveData<List<Plan>> = _getRecommendedPlansMutableLiveData
 
+    private val _getRecommendedViewPlansMutableLiveData = MutableLiveData<List<PlaceInPlan>>()
+    val getRecommendedViewPlansLiveData: LiveData<List<PlaceInPlan>> = _getRecommendedViewPlansMutableLiveData
     fun getRecommended(limit:String){
         viewModelScope.launch {
             try {
@@ -158,6 +164,38 @@ class ViewModel @Inject constructor(
 
             }catch (t:Throwable){
 
+            }
+        }
+    }
+
+    fun getRecommendedPlans(){
+        viewModelScope.launch {
+            try {
+
+                val response = repository.getRecommendedPlans()
+
+                response.body()!!.data.plans.let {
+                    _getRecommendedPlansMutableLiveData.postValue(it)
+                }
+
+            }catch (t:Throwable){
+                Log.d("testApp",t.message.toString()+ " Errorss getRecommendedPlans")
+            }
+        }
+    }
+
+    fun getRecommendedPlanss(){
+        viewModelScope.launch {
+            try {
+
+                val response = repository.getRecommendedPlanss()
+
+                response.body()!!.data.plans[0].places.let {
+                    _getRecommendedViewPlansMutableLiveData.postValue(it)
+                }
+
+            }catch (t:Throwable){
+                Log.d("testApp",t.message.toString()+ " Errorss getRecommendedPlans")
             }
         }
     }

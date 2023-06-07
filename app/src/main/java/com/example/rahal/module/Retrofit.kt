@@ -11,5 +11,8 @@ class Retrofit {
             .baseUrl("http://192.168.1.9:3000/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
+
+        //192.168.1.63
+        //192.168.1.9
     }
 }

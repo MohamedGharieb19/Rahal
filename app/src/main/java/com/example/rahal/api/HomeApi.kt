@@ -8,6 +8,8 @@ import com.example.rahal.data.UserResponse
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.search.Search
+import com.example.rahal.data.suggestedPlans.Plan
+import com.example.rahal.data.suggestedPlans.suggestedPlans
 import com.example.rahal.remove2.List
 import retrofit2.Call
 import retrofit2.Response
@@ -32,10 +34,6 @@ interface HomeApi {
         @Body forgetPasswordRequest: ForgetPasswordRequest
     )
 
-
-
-
-
     @GET("attractions")
     suspend fun getAttractions(
         @Query("limit") sort: String
@@ -57,7 +55,7 @@ interface HomeApi {
         @Path("city") city: String
     ): Response<Activities>
 
-    @GET("cities/activties/city/{city}/activity/{type}/attractions")
+    @GET("cities/activties/city/{city}/{type}/attractions")
     suspend fun getContentOfActivites(
         @Path("city") city: String,
         @Path("type") type: String
@@ -67,4 +65,10 @@ interface HomeApi {
     suspend fun searchForPlaces(
         @Query("search") searchQuery: String
     ): Response<Search>
+
+    @GET("cities/plans/generate")
+    suspend fun recommendedPlans(): Response<suggestedPlans>
+
+    @GET("cities/plans/generate")
+    suspend fun recommendedPlanss(): Response<suggestedPlans>
 }

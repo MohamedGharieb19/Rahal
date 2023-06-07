@@ -207,7 +207,7 @@ class HomePageFragment : Fragment() {
             bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
-            bundle.putString("location",data.location.coordiantes.toString())
+            //bundle.putString("location",data.location.coordiantes.toString())
             fragment.arguments = bundle
             findNavController().navigate(R.id.action_homePageFragment_to_viewPlaceFragment,bundle)
         }
@@ -223,7 +223,7 @@ class HomePageFragment : Fragment() {
             bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
-            bundle.putString("location",data.location.coordiantes.toString())
+            //bundle.putString("location",data.location.coordiantes.toString())
             fragment.arguments = bundle
             findNavController().navigate(R.id.action_homePageFragment_to_viewPlaceFragment,bundle)
         }

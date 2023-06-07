@@ -94,7 +94,7 @@ class SignUpUserFragment : Fragment() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val user = response.body()
                 if (response.code() == 201) {
-                    Log.e("sucess", user?.token.toString())
+                    Log.e("sucess token", user?.token.toString())
                     Log.e("sucess", user?.data?.user?.name.toString())
                     Log.e("sucess", user?.data?.user?.email.toString())
                     Log.e("sucess", user?.data?.user?.password.toString())

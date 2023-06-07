@@ -7,6 +7,9 @@ import com.example.rahal.data.PlaceList
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.search.Search
+import com.example.rahal.data.suggestedPlans.PlaceInPlan
+import com.example.rahal.data.suggestedPlans.Plan
+import com.example.rahal.data.suggestedPlans.suggestedPlans
 import com.example.rahal.database.PlaceDataBase
 import com.example.rahal.remove2.List
 import retrofit2.Response
@@ -104,6 +107,28 @@ class Repository @Inject constructor(
             Log.d("TestApp","Success to connect getActivities() : ${response.code()}")
         }else {
             Log.d("TestApp","Failed to connected getActivities(): ${response.code()}")
+        }
+        return response
+    }
+
+    suspend fun getRecommendedPlans(): Response<suggestedPlans> {
+        val response = homeApi.recommendedPlans()
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getRecommended() : ${response.code()}")
+            Log.d("TestApp","Success to connect getRecommended() : ${response.body()}")
+        }else {
+            Log.d("TestApp","Failed to connected getRecommended(): ${response.code()}")
+        }
+        return response
+    }
+
+    suspend fun getRecommendedPlanss(): Response<suggestedPlans> {
+        val response = homeApi.recommendedPlanss()
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getRecommended() : ${response.code()}")
+            Log.d("TestApp","Success to connect getRecommended() : ${response.body()}")
+        }else {
+            Log.d("TestApp","Failed to connected getRecommended(): ${response.code()}")
         }
         return response
     }

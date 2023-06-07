@@ -107,7 +107,7 @@ class ViewPlaceFragment : Fragment() {
             Log.d("testApp",cordinates)
             Glide.with(requireContext()).load(image).into(binding.imageView)
             if (description.text.equals("null") || description.text.equals("")){
-                description.text = "hello"
+                description.text = "Welcome to our place in downtown. Enjoy comfort and convenience with amenities like a fitness center, business center, and on-site restaurant. Our modern rooms feature free Wi-Fi, plush bedding, and 24/7 service. Our friendly staff is available to help make your stay unforgettable. Book now to experience the best of our city from your home away from home."
             }
         }
     }
