@@ -1,6 +1,5 @@
 package com.example.rahal.ui.home
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
@@ -15,7 +14,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rahal.R
@@ -91,7 +89,7 @@ class YourPlansFragment : Fragment() {
             dialog,_->
             val image = imageView
             val planName = planName.text.toString()
-            val circle = Circle(1,R.drawable.kfc,planName)
+            val circle = Circle(1,R.drawable.egypt,planName)
             adapter.setCircleData(listOf(circle))
             adapter.notifyDataSetChanged()
             dialog.dismiss()

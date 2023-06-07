@@ -43,7 +43,7 @@
                 android:id="@+id/place_image"
                 android:layout_width="77dp"
                 android:layout_height="77dp"
-                android:src="@drawable/kfc"
+                android:src="@drawable/egypt"
                 android:scaleType="centerCrop"
                 android:layout_margin="8dp"
                 app:layout_constraintTop_toTopOf="parent"

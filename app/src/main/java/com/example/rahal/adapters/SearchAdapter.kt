@@ -42,13 +42,12 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = differ.currentList[position]
-        Glide.with(holder.itemView).load(data.image)
-            .placeholder(R.drawable.ic_image_search_24)
-            .into(holder.binding.imageCircleId)
+        Glide.with(holder.itemView).load(data.image).into(holder.binding.imageCircleId)
         holder.binding.placeNameTextView.text = data.name
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.starIcon.rating = data.rating.toFloat()
         holder.binding.locationPlace.text = data.location.address
+
         holder.itemView.setOnClickListener {
             onPlaceItemClick.invoke(data)
         }

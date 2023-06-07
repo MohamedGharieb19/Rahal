@@ -30,7 +30,7 @@ object AppModule {
     @Singleton
     fun provideApi(): HomeApi =
         Retrofit.Builder()
-            .baseUrl("http://192.168.1.8:3000/api/")
+            .baseUrl("http://192.168.1.9:3000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(HomeApi::class.java)
