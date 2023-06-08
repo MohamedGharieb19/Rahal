@@ -61,7 +61,7 @@
         android:label="fragment_your_plans"
         tools:layout="@layout/fragment_your_plans" >
         <action
-            android:id="@+id/action_yourPlansFragment_to_planFragment2"
+            android:id="@+id/action_yourPlansFragment_to_planFragment"
             app:destination="@id/planFragment" />
     </fragment>
     <fragment

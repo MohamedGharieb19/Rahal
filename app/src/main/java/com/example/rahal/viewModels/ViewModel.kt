@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
+import com.example.rahal.data.createPlans.CreatedPlan
 import com.example.rahal.data.search.City
 import com.example.rahal.data.suggestedPlans.PlaceInPlan
 import com.example.rahal.data.suggestedPlans.Plan
@@ -199,6 +200,12 @@ class ViewModel @Inject constructor(
             }
         }
     }
+
+    fun insertPlan(createdPlan: CreatedPlan) = viewModelScope.launch {
+        repository.insertCreatedPlan(createdPlan)
+    }
+
+    fun getCreatedPlans() = repository.getCreatedPlans
 
     fun upsert(place: Place) = viewModelScope.launch {
         repository.upsert(place)

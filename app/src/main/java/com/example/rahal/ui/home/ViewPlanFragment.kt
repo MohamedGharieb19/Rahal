@@ -1,6 +1,7 @@
 package com.example.rahal.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.rahal.R
 import com.example.rahal.adapters.RecommendedAdapter
 import com.example.rahal.adapters.placesInPlanAdapter
+import com.example.rahal.data.createPlans.PlacesInCreatedPlan
+import com.example.rahal.data.suggestedPlans.PlaceInPlan
 import com.example.rahal.databinding.FragmentViewPlanBinding
 import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class ViewPlanFragment : Fragment() {
@@ -38,13 +42,17 @@ class ViewPlanFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_planFragment_to_searchFragment)
         }
+         val data = arguments
+        val placesList = arguments?.getParcelableArrayList<PlaceInPlan>("list")
+        Log.e("data", placesList.toString())
     }
 
     private fun getRecommendedPlans(){
         setupRecyclerView()
+        val placesList = arguments?.getParcelableArrayList<PlaceInPlan>("list")
         viewModel.getRecommendedPlanss()
         viewModel.getRecommendedViewPlansLiveData.observe(viewLifecycleOwner, Observer {
-            placesInPlanAdapter.differ.submitList(it)
+            placesInPlanAdapter.differ.submitList(placesList)
         })
     }
 
@@ -65,7 +73,7 @@ class ViewPlanFragment : Fragment() {
             bundle.putString("reviews",data.numberOfReviews.toString())
             bundle.putString("description",data.description)
             bundle.putString("address",data.location.address)
-            //bundle.putString("location",data.location.coordinates.toString())
+            bundle.putString("location",data.location.coordinates.toString())
             fragment.arguments = bundle
             findNavController().navigate(R.id.action_planFragment_to_viewPlaceFragment,bundle)
         }

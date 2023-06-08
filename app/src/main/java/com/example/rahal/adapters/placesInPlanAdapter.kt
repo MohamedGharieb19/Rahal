@@ -41,11 +41,13 @@ class placesInPlanAdapter(): RecyclerView.Adapter<placesInPlanAdapter.viewHolder
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val data = differ.currentList[position]
-        Glide.with(holder.itemView).load(data.image).into(holder.binding.placeImage)
+        Glide.with(holder.itemView).load(data!!.image).into(holder.binding.placeImage)
         holder.binding.locationPlace.text = data.location.address
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.placeNameTextView.text = data.name
         holder.binding.starIcon.rating = data.rating.toFloat()
+
+
 
 
         holder.itemView.setOnClickListener {

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,26 +15,30 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rahal.R
+import com.example.rahal.adapters.CreatedPlansAdapter
+import com.example.rahal.data.createPlans.CreatedPlan
+import com.example.rahal.data.createPlans.PlacesInCreatedPlan
 import com.example.rahal.databinding.FragmentYourPlansBinding
-import com.example.rahal.remove.Circle
-import com.example.rahal.remove.PlansAdapter
+import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class YourPlansFragment : Fragment() {
     private lateinit var binding:FragmentYourPlansBinding
     private lateinit var createPlanButton: Button
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var planList: ArrayList<Circle>
-    private lateinit var adapter: PlansAdapter
+    private lateinit var createdPlansAdapter: CreatedPlansAdapter
     private lateinit var imageView: ImageView
     private lateinit var button: Button
     private lateinit var planName:EditText
     private lateinit var imageBackgroud:ImageView
     private lateinit var textView: TextView
+    private val viewModel: ViewModel by viewModels()
     var imageUri:Uri? = null
 
     companion object {
@@ -46,29 +51,27 @@ class YourPlansFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentYourPlansBinding.inflate(inflater,container,false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeVariables()
-        planList = ArrayList()
+        setupRecyclerView()
+        getCreatedPlans()
+        onPlanClick()
 
-
-        createPlanButton = binding.createPlanButton
-
-        adapter = PlansAdapter()
-
-        recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
         createPlanButton.setOnClickListener { addInfo() }
-
-
 
     }
 
+    private fun setupRecyclerView(){
+        createdPlansAdapter = CreatedPlansAdapter()
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = createdPlansAdapter
+        }
+    }
 
     private fun addInfo() {
         val inflater = LayoutInflater.from(requireContext())
@@ -89,9 +92,18 @@ class YourPlansFragment : Fragment() {
             dialog,_->
             val image = imageView
             val planName = planName.text.toString()
-            val circle = Circle(1,R.drawable.egypt,planName)
-            adapter.setCircleData(listOf(circle))
-            adapter.notifyDataSetChanged()
+            val plan = CreatedPlan(0,"",planName, list = listOf(
+                PlacesInCreatedPlan(0, 0,1,"1",
+                    emptyList(), emptyList(),"fds",
+                    12,"","sd",
+                    1, "15","s",1.2)
+            ))
+
+
+            viewModel.insertPlan(plan)
+            getCreatedPlans()
+
+            createdPlansAdapter.notifyDataSetChanged()
             dialog.dismiss()
         }
         addDialog.setNegativeButton("Cancel"){
@@ -100,13 +112,26 @@ class YourPlansFragment : Fragment() {
         }
         addDialog.create()
         addDialog.show()
+
+
+    }
+
+    private fun getCreatedPlans(){
+        viewModel.getCreatedPlans().observe(viewLifecycleOwner, Observer { data ->
+            if (data.isEmpty()){
+                createdPlansAdapter.differ.submitList(null)
+            }else {
+                createdPlansAdapter.differ.submitList(data)
+            }
+        })
     }
 
     private fun initializeVariables() {
         imageBackgroud = binding.backgroundImageView
         textView = binding.createdPlansTextView
-    }
+        createPlanButton = binding.createPlanButton
 
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -117,5 +142,21 @@ class YourPlansFragment : Fragment() {
         }
     }
 
+    private fun onPlanClick(){
+        createdPlansAdapter.onPlanItemClick = { data ->
+            val fragment = ViewPlanFragment()
+            val bundle = Bundle()
+            //bundle.putParcelable("list",data.list.component1())
+            bundle.putParcelableArrayList("list",ArrayList(data.list))
+            Log.e("list",data.list.toString())
+            fragment.arguments = bundle
+            findNavController().navigate(R.id.action_plansFragment_to_planFragment,bundle)
+        }
+    }
+
+
+
 }
+
+
 

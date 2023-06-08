@@ -11,10 +11,7 @@ import com.example.rahal.databinding.CustomCircularItemForRecyclerViewBinding
 class ActivitiesAdapter():RecyclerView.Adapter<ActivitiesAdapter.viewHolder>() {
 
     lateinit var onActivityItemClick: ((String) -> String)
-
-    class viewHolder(val binding: CustomCircularItemForRecyclerViewBinding):RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class viewHolder(val binding: CustomCircularItemForRecyclerViewBinding):RecyclerView.ViewHolder(binding.root) {}
 
     val diffUtil = object : DiffUtil.ItemCallback<String>(){
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {

@@ -41,11 +41,6 @@ class RecommendedPlansFragment : Fragment() {
 
     private fun getRecommendedPlans(){
         setupRecyclerView()
-
-//                val request = recommendedResponse()
-//                request.plans = "2"
-//                request.restaurants = "2"
-//                request.attractions = "2"
         viewModel.getRecommendedPlans()
         viewModel.getRecommendedPlansLiveData.observe(viewLifecycleOwner, Observer {
             recommendedAdapter.differ.submitList(it)
@@ -62,17 +57,17 @@ class RecommendedPlansFragment : Fragment() {
     }
 
     private fun onPlanClick(){
-        recommendedAdapter.onPlanClick = {
+        recommendedAdapter.onPlanClick = { data ->
             val fragment = ViewPlanFragment()
             val bundle = Bundle()
-//            val list:List<PlaceInPlan> = data.plan
-//            bundle.putParcelableArrayList("list", ArrayList<List<PlaceInPlan>>)
+
+            bundle.putParcelableArrayList("list",ArrayList(data!!.places))
 
 
 
             fragment.arguments = bundle
-            findNavController().navigate(R.id.action_plansFragment_to_planFragment)
-            //findNavController().navigate(R.id.action_recommendedPlansFragment_to_planFragmentt,bundle)
+            findNavController().navigate(R.id.action_plansFragment_to_planFragment,bundle)
+
         }
     }
 

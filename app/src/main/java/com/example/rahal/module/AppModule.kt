@@ -4,7 +4,10 @@ import android.app.Application
 import android.provider.DocumentsContract.Root
 import androidx.room.Room
 import com.example.rahal.api.HomeApi
+import com.example.rahal.database.CreatedPlanDao
+import com.example.rahal.database.PlaceDao
 import com.example.rahal.database.PlaceDataBase
+import com.example.rahal.database.PlacesInCreatedPlanDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,4 +45,17 @@ object AppModule {
         Room.databaseBuilder(application,PlaceDataBase::class.java,"place.database")
             .fallbackToDestructiveMigration()
             .build()
+
+//    @Provides
+//    @Singleton
+//    fun providePlaceDao(database: PlaceDataBase): PlaceDao = database.placeDao()
+//
+//    @Provides
+//    @Singleton
+//    fun provideCreatedPlanDao(database: PlaceDataBase): CreatedPlanDao = database.createdPlanDao()
+//
+//    @Provides
+//    @Singleton
+//    fun providePlacesInCreatedPlanDao(database: PlaceDataBase): PlacesInCreatedPlanDao = database.placesInCreatedPlanDao()
+
 }

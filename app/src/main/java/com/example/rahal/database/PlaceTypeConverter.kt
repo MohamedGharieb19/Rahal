@@ -3,6 +3,9 @@ package com.example.rahal.database
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.example.rahal.data.Location
+import com.example.rahal.data.createPlans.PlacesInCreatedPlan
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -45,6 +48,17 @@ class PlaceTypeConverter {
             jsonObject.put("type", location.type)
             jsonObject.toString()
         }
+    }
+
+    @TypeConverter
+    fun fromJson(json: String): List<PlacesInCreatedPlan> {
+        val type = object : TypeToken<List<PlacesInCreatedPlan>>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    @TypeConverter
+    fun toJson(list: List<PlacesInCreatedPlan>): String {
+        return Gson().toJson(list)
     }
 
 

@@ -74,6 +74,7 @@
             android:fontFamily="sans-serif"
             android:text="@string/review"
             android:textColor="#AFADAD"
+            android:layout_marginStart="1dp"
             app:layout_constraintBottom_toBottomOf="@id/star_icon"
             app:layout_constraintStart_toEndOf="@id/number_of_reviews_text_view"
             app:layout_constraintTop_toTopOf="@id/star_icon" />
