@@ -92,12 +92,7 @@ class YourPlansFragment : Fragment() {
             dialog,_->
             val image = imageView
             val planName = planName.text.toString()
-            val plan = CreatedPlan(0,"",planName, list = listOf(
-                PlacesInCreatedPlan(0, 0,1,"1",
-                    emptyList(), emptyList(),"fds",
-                    12,"","sd",
-                    1, "15","s",1.2)
-            ))
+            val plan = CreatedPlan(0,"",planName, mutableListOf())
 
 
             viewModel.insertPlan(plan)
@@ -147,10 +142,10 @@ class YourPlansFragment : Fragment() {
             val fragment = ViewPlanFragment()
             val bundle = Bundle()
             //bundle.putParcelable("list",data.list.component1())
-            bundle.putParcelableArrayList("list",ArrayList(data.list))
+            bundle.putParcelableArrayList("list", ArrayList(data!!.list))
             Log.e("list",data.list.toString())
             fragment.arguments = bundle
-            findNavController().navigate(R.id.action_plansFragment_to_planFragment,bundle)
+            findNavController().navigate(R.id.action_plansFragment_to_viewYourCreatedPlanFragment,bundle)
         }
     }
 

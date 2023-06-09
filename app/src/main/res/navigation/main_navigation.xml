@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_plansFragment_to_planFragment"
             app:destination="@id/planFragment" />
+        <action
+            android:id="@+id/action_plansFragment_to_viewYourCreatedPlanFragment"
+            app:destination="@id/viewYourCreatedPlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -61,8 +64,8 @@
         android:label="fragment_your_plans"
         tools:layout="@layout/fragment_your_plans" >
         <action
-            android:id="@+id/action_yourPlansFragment_to_planFragment"
-            app:destination="@id/planFragment" />
+            android:id="@+id/action_yourPlansFragment_to_viewYourCreatedPlanFragment"
+            app:destination="@id/viewYourCreatedPlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/recommendedPlansFragment"
@@ -114,6 +117,9 @@
         <action
             android:id="@+id/action_viewPlaceFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_viewPlaceFragment_to_addToCreatedPlansFragment"
+            app:destination="@id/addToCreatedPlansFragment" />
     </fragment>
     <fragment
         android:id="@+id/planFragment"
@@ -138,5 +144,22 @@
         <action
             android:id="@+id/action_searchFragment_to_viewPlaceFragment"
             app:destination="@id/viewPlaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addToCreatedPlansFragment"
+        android:name="com.example.rahal.AddToCreatedPlansFragment"
+        android:label="fragment_add_to_created_plans"
+        tools:layout="@layout/fragment_add_to_created_plans" />
+    <fragment
+        android:id="@+id/viewYourCreatedPlanFragment"
+        android:name="com.example.rahal.ViewYourCreatedPlanFragment"
+        android:label="fragment_view_your_created_plan"
+        tools:layout="@layout/fragment_view_your_created_plan" >
+        <action
+            android:id="@+id/action_viewYourCreatedPlanFragment_to_viewPlaceFragment"
+            app:destination="@id/viewPlaceFragment" />
+        <action
+            android:id="@+id/action_viewYourCreatedPlanFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 </navigation>

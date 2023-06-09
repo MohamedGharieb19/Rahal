@@ -12,5 +12,5 @@ data class CreatedPlan(
     val id: Long = 0,
     val image: String,
     val text: String,
-    val list: List<PlacesInCreatedPlan>
+    var list: List<PlacesInCreatedPlan> ? = emptyList()
 ):Parcelable

@@ -31,20 +31,13 @@ class ViewPlanFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentViewPlanBinding.inflate(inflater,container,false)
-        getRecommendedPlans()
-        onPlaceInPlanClick()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_planFragment_to_searchFragment)
-        }
-         val data = arguments
-        val placesList = arguments?.getParcelableArrayList<PlaceInPlan>("list")
-        Log.e("data", placesList.toString())
+        getRecommendedPlans()
+        onPlaceInPlanClick()
     }
 
     private fun getRecommendedPlans(){

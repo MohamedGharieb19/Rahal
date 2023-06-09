@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
 import com.example.rahal.data.createPlans.CreatedPlan
+import com.example.rahal.data.createPlans.PlacesInCreatedPlan
 import com.example.rahal.data.search.City
 import com.example.rahal.data.suggestedPlans.PlaceInPlan
 import com.example.rahal.data.suggestedPlans.Plan
@@ -204,6 +205,14 @@ class ViewModel @Inject constructor(
     fun insertPlan(createdPlan: CreatedPlan) = viewModelScope.launch {
         repository.insertCreatedPlan(createdPlan)
     }
+
+    fun updatePlan(createdPlan: CreatedPlan) = viewModelScope.launch {
+        repository.updateCreatedPlan(createdPlan)
+    }
+
+//    fun insertPlacesInCreatedPlan(placesInCreatedPlan: PlacesInCreatedPlan) = viewModelScope.launch {
+//        repository.insertPlacesInCreatedPlan(placesInCreatedPlan)
+//    }
 
     fun getCreatedPlans() = repository.getCreatedPlans
 

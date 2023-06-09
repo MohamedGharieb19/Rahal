@@ -12,7 +12,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.rahal.AddToCreatedPlansFragment
 import com.example.rahal.R
 import com.example.rahal.databinding.FragmentViewPlaceBinding
 import com.example.rahal.viewModels.ViewModel
@@ -53,6 +55,10 @@ class ViewPlaceFragment : Fragment() {
         options.setOnClickListener { showPopupMenu() }
 
         binding.mapView.setOnClickListener {openMaps() }
+
+        binding.addToPlanButton.setOnClickListener {
+            onAddToPlanButtonClick()
+        }
     }
 
     private fun openMaps(){
@@ -111,5 +117,21 @@ class ViewPlaceFragment : Fragment() {
             }
         }
     }
+
+    private fun onAddToPlanButtonClick(){
+            val fragment = AddToCreatedPlansFragment()
+            val bundle = Bundle()
+            bundle.putString("image",image)
+            bundle.putDouble("rate",ratingBar.rating.toDouble())
+            bundle.putString("title",title.text.toString())
+            bundle.putString("reviews",reviews.text.toString())
+            bundle.putString("description",description.text.toString())
+            bundle.putString("address",location.text.toString())
+            //bundle.putString("location",data.location.coordiantes.toString())
+            fragment.arguments = bundle
+        findNavController().navigate(R.id.action_viewPlaceFragment_to_addToCreatedPlansFragment,bundle)
+
+    }
+
 
 }
