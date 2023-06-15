@@ -50,7 +50,9 @@ class ViewAllActivitiesFragment : Fragment() {
             findNavController().navigate(R.id.action_viewAllActivitesFragment_to_searchFragment)
         }
 
-
+        binding.backArrowButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
     }
 

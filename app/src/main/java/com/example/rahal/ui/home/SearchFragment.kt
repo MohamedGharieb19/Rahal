@@ -59,6 +59,10 @@ class SearchFragment : Fragment() {
         getPlacesFromSearch()
         onPlaceClick()
 
+        binding.backArrowButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
     }
 
     private fun setEditTextOnFocusMode(){

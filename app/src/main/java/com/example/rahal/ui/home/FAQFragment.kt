@@ -36,15 +36,14 @@ class FAQFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
-//        activity?.run {
-//            supportFragmentManager.beginTransaction().remove(FAQFragment())
-//                .commitAllowingStateLoss()
-//        }
+
+        binding.backArrowButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun intilaizeVariables() {
         recyclerview = binding.recylcerView
-
     }
 
     private fun setUpRecyclerView(){
@@ -64,13 +63,5 @@ class FAQFragment : Fragment() {
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
     }
-
-//    override fun onPause() {
-//        super.onPause()
-//        findNavController().popBackStack()
-//        requireFragmentManager().beginTransaction().remove(this).commit()
-//
-//    }
-
 
 }

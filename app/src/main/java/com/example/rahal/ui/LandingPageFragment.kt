@@ -34,11 +34,6 @@ class LandingPageFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.logInUserFragment)
         }
 
-        binding.bussinessOwnerButton.setOnClickListener {
-            startActivity(Intent(activity,MainActivityBusniessOwner::class.java))
-
-            
-        }
     }
 
 

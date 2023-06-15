@@ -38,6 +38,8 @@ class ViewPlanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getRecommendedPlans()
         onPlaceInPlanClick()
+
+        binding.backArrowButton.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun getRecommendedPlans(){

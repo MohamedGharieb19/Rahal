@@ -7,11 +7,9 @@ import com.example.rahal.data.PlaceList
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.createPlans.CreatedPlan
-import com.example.rahal.data.createPlans.PlacesInCreatedPlan
 import com.example.rahal.data.search.Search
 import com.example.rahal.data.suggestedPlans.suggestedPlans
 import com.example.rahal.database.PlaceDataBase
-import com.example.rahal.remove2.List
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -25,10 +23,6 @@ class Repository @Inject constructor(
 
     private val databaseCreatedPlan = placeDataBase.createdPlanDao()
     val getCreatedPlans = databaseCreatedPlan.getCreatedPlans()
-
-    private val databasePlacesInCreatedPlan = placeDataBase.placesInCreatedPlanDao()
-    //val getPlacesInCreatedPlan = databasePlacesInCreatedPlan.getPlacesInCreatedPlan()
-
 
     suspend fun insertCreatedPlan(createdPlan: CreatedPlan){
         databaseCreatedPlan.insert(createdPlan)
@@ -106,16 +100,6 @@ class Repository @Inject constructor(
             Log.d("TestApp","Success to connect getContentOfActivities() : ${response.code()}")
         }else {
             Log.d("TestApp","Failed to connected getContentOfActivities(): ${response.code()}")
-        }
-        return response
-    }
-
-    suspend fun getNew(cityName:String,sort: String): Response<List>{
-        val response = homeApi.getNew(cityName,sort)
-        if (response.isSuccessful){
-            Log.d("TestApp","Success to connect getcites() : ${response.code()}")
-        }else {
-            Log.d("TestApp","Failed to connected getcites(): ${response.code()}")
         }
         return response
     }

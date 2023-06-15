@@ -7,11 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
 import com.example.rahal.data.createPlans.CreatedPlan
-import com.example.rahal.data.createPlans.PlacesInCreatedPlan
 import com.example.rahal.data.search.City
 import com.example.rahal.data.suggestedPlans.PlaceInPlan
 import com.example.rahal.data.suggestedPlans.Plan
-import com.example.rahal.remove2.Restaurant
 import com.example.rahal.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -33,9 +31,6 @@ class ViewModel @Inject constructor(
 
     private val _getTopRatedMutableLiveData = MutableLiveData<List<Place>>()
     val getTopRatedLiveData: LiveData<List<Place>> = _getTopRatedMutableLiveData
-
-    private val _getNewMutableLiveData = MutableLiveData<List<Restaurant>>()
-    val getNewLiveData: LiveData<List<Restaurant>> = _getNewMutableLiveData
 
      val _getActivitiesMutableLiveData = MutableLiveData<List<String>>()
     val getActivitiesLiveData: LiveData<List<String>> = _getActivitiesMutableLiveData
@@ -136,21 +131,6 @@ class ViewModel @Inject constructor(
 
             }catch (t:Throwable){
                 Log.d("testApp",t.message.toString()+ " Error getContentOfActivities")
-            }
-        }
-    }
-
-    fun getNew(cityName:String){
-        viewModelScope.launch {
-            try {
-                val response = repository.getNew(cityName,"10")
-
-                response.body()!!.data.restaurants.let {
-                    _getNewMutableLiveData.postValue(it)
-                }
-
-            }catch (t:Throwable){
-                Log.d("testApp",t.message.toString()+ " Error getNew")
             }
         }
     }

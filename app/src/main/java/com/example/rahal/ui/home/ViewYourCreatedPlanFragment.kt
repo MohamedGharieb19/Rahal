@@ -35,6 +35,8 @@ class ViewYourCreatedPlanFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_viewYourCreatedPlanFragment_to_searchFragment)
         }
+
+        binding.backArrowButton.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun getYourPlans(){

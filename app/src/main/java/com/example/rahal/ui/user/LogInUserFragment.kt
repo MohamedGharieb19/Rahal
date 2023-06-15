@@ -51,10 +51,6 @@ class LogInUserFragment : Fragment() {
         validateEmail()
         validatePassword()
 
-        binding.backArrowButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.landingPageFragment)
-        }
-
         binding.registerNowTextVeiw.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.signUpUserFragment)
         }
@@ -63,14 +59,7 @@ class LogInUserFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.forgetPasswordUserFragment)
         }
 
-        binding.floatingButton.setOnClickListener {
-            login()
-            //Navigation.findNavController(view).navigate(R.id.action_logInUserFragment_to_homePageFragment)
-            //Navigation.findNavController(view).navigate(R.id.followSignUpUserFragment)
-
-
-
-        }
+        binding.floatingButton.setOnClickListener { login() }
     }
 
     private fun login() {

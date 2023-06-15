@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ReviewFragment : Fragment() {
     private lateinit var binding:FragmentReviewBinding
-    private lateinit var backArrowButton:ImageView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,11 +26,8 @@ class ReviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        backArrowButton = binding.backArrowButton
 
-        backArrowButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_reviewFragment_to_viewPlaceFragment)
-        }
+        binding.backArrowButton.setOnClickListener { requireActivity().onBackPressed() }
 
     }
 

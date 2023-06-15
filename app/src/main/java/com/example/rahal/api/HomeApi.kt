@@ -8,9 +8,7 @@ import com.example.rahal.data.UserResponse
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.search.Search
-import com.example.rahal.data.suggestedPlans.Plan
 import com.example.rahal.data.suggestedPlans.suggestedPlans
-import com.example.rahal.remove2.List
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -43,12 +41,6 @@ interface HomeApi {
     suspend fun getAttractionsForSpecificCity(
         @Path("city") city: String,
     ): Response<Content>
-
-    @GET("cities/city/{city}/restaurants")
-    suspend fun getNew(
-        @Path("city") city: String,
-        @Query("limit") sort: String
-    ): Response<List>
 
     @GET("cities/activties/city/{city}/attractions")
     suspend fun getActivities(

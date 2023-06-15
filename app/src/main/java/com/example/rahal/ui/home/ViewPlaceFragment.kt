@@ -55,9 +55,9 @@ class ViewPlaceFragment : Fragment() {
 
         binding.mapView.setOnClickListener {openMaps() }
 
-        binding.addToPlanButton.setOnClickListener {
-            onAddToPlanButtonClick()
-        }
+        binding.addToPlanButton.setOnClickListener { onAddToPlanButtonClick() }
+
+        binding.backArrowButton.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun openMaps(){

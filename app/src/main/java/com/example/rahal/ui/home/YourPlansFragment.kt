@@ -70,6 +70,7 @@ class YourPlansFragment : Fragment() {
             deleteCreatedPlan()
         }
 
+
     }
 
     private fun setupRecyclerView(){
