@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.rahal.AddToCreatedPlansFragment
 import com.example.rahal.R
 import com.example.rahal.databinding.FragmentViewPlaceBinding
 import com.example.rahal.viewModels.ViewModel
@@ -129,7 +128,7 @@ class ViewPlaceFragment : Fragment() {
             bundle.putString("address",location.text.toString())
             //bundle.putString("location",data.location.coordiantes.toString())
             fragment.arguments = bundle
-        findNavController().navigate(R.id.action_viewPlaceFragment_to_addToCreatedPlansFragment,bundle)
+        findNavController().navigate(R.id.addToCreatedPlansFragment,bundle)
 
     }
 

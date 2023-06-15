@@ -32,7 +32,22 @@ class HomeActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
 
-
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (
+                destination.id != R.id.homePageFragment &&
+                destination.id !=R.id.profileFragment &&
+                destination.id !=R.id.favoritesFragment &&
+                destination.id !=R.id.plansFragment
+                    ){
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                bottomNavigationView.visibility = View.GONE
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }

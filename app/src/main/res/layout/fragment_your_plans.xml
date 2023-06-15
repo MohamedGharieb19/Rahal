@@ -30,6 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/background_image_view"
         />
     <TextView
+        android:id="@+id/create_your_plan_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="create your own plan by pressing on create your plan button"

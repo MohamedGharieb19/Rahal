@@ -147,12 +147,12 @@
     </fragment>
     <fragment
         android:id="@+id/addToCreatedPlansFragment"
-        android:name="com.example.rahal.AddToCreatedPlansFragment"
+        android:name="com.example.rahal.ui.home.AddToCreatedPlansFragment"
         android:label="fragment_add_to_created_plans"
         tools:layout="@layout/fragment_add_to_created_plans" />
     <fragment
         android:id="@+id/viewYourCreatedPlanFragment"
-        android:name="com.example.rahal.ViewYourCreatedPlanFragment"
+        android:name="com.example.rahal.ui.home.ViewYourCreatedPlanFragment"
         android:label="fragment_view_your_created_plan"
         tools:layout="@layout/fragment_view_your_created_plan" >
         <action

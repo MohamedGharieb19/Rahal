@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rahal.R
@@ -34,18 +35,11 @@ class FAQFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-        activity?.run {
-            supportFragmentManager.beginTransaction().remove(FAQFragment())
-                .commitAllowingStateLoss()
-        }
-
-        recyclerView()
-
-
-
+        setUpRecyclerView()
+//        activity?.run {
+//            supportFragmentManager.beginTransaction().remove(FAQFragment())
+//                .commitAllowingStateLoss()
+//        }
     }
 
     private fun intilaizeVariables() {
@@ -53,7 +47,7 @@ class FAQFragment : Fragment() {
 
     }
 
-    private fun recyclerView(){
+    private fun setUpRecyclerView(){
         recyclerview.layoutManager = LinearLayoutManager(context)
 
         data.add(FaqItem("Trip Plan", "Which plan is right for me? Our plans – Basix, Original, Comfort and Premium – cover a whole gamut of travel experiences. To find out which one has ‘You’ written all over it, visit our Are trips physically demanding? Want to lie in a hammock and not move until cocktail hour? We’ve got a trip for that. Want to power up the side of a mountain at high altitude? We’ve also got a trip for that. To determine what type of trip suits you best, each of our trips comes with a Physical Rating to let you know how physically demanding it is… or isn’t."))
@@ -71,7 +65,12 @@ class FAQFragment : Fragment() {
         recyclerview.adapter = adapter
     }
 
-
+//    override fun onPause() {
+//        super.onPause()
+//        findNavController().popBackStack()
+//        requireFragmentManager().beginTransaction().remove(this).commit()
+//
+//    }
 
 
 }

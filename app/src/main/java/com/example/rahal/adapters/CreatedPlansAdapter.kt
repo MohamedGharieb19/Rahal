@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rahal.data.createPlans.CreatedPlan
 import com.example.rahal.databinding.CustomRectangleItemForPlansBinding
 
@@ -14,6 +15,8 @@ class CreatedPlansAdapter(): RecyclerView.Adapter<CreatedPlansAdapter.viewHolder
 
 
     lateinit var onPlanItemClick: ((CreatedPlan)  -> Unit )
+
+    lateinit var onPlanItemLongClick: ((CreatedPlan)  -> Unit )
 
     private val diffUtil = object : DiffUtil.ItemCallback<CreatedPlan>(){
         override fun areItemsTheSame(oldItem: CreatedPlan, newItem: CreatedPlan): Boolean {
@@ -43,9 +46,20 @@ class CreatedPlansAdapter(): RecyclerView.Adapter<CreatedPlansAdapter.viewHolder
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val data = differ.currentList[position]
         holder.binding.textView.text = data.text
+        Glide.with(holder.itemView).load(data.image).into(holder.binding.imageView)
 
         holder.itemView.setOnClickListener {
             onPlanItemClick.invoke(data)
         }
+
+        holder.itemView.setOnLongClickListener{
+            onPlanItemLongClick.invoke(data)
+            true
+        }
+
+    }
+
+    fun setOnPlanItemLongClickListener(listener: (CreatedPlan) -> Unit) {
+        onPlanItemLongClick = listener
     }
 }

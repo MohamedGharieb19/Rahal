@@ -229,7 +229,7 @@ class HomePageFragment : Fragment() {
             bundle.putString("address",data.location.address)
             //bundle.putString("location",data.location.coordiantes.toString())
             fragment.arguments = bundle
-            findNavController().navigate(R.id.action_homePageFragment_to_viewPlaceFragment,bundle)
+            findNavController().navigate(R.id.viewPlaceFragment,bundle)
         }
     }
     private fun showPopupMenu() {

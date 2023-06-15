@@ -33,7 +33,7 @@ object AppModule {
     @Singleton
     fun provideApi(): HomeApi =
         Retrofit.Builder()
-            .baseUrl("http://192.168.1.28:3000/api/")
+            .baseUrl("http://192.168.1.14:3000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(HomeApi::class.java)
@@ -45,17 +45,5 @@ object AppModule {
         Room.databaseBuilder(application,PlaceDataBase::class.java,"place.database")
             .fallbackToDestructiveMigration()
             .build()
-
-//    @Provides
-//    @Singleton
-//    fun providePlaceDao(database: PlaceDataBase): PlaceDao = database.placeDao()
-//
-//    @Provides
-//    @Singleton
-//    fun provideCreatedPlanDao(database: PlaceDataBase): CreatedPlanDao = database.createdPlanDao()
-//
-//    @Provides
-//    @Singleton
-//    fun providePlacesInCreatedPlanDao(database: PlaceDataBase): PlacesInCreatedPlanDao = database.placesInCreatedPlanDao()
 
 }

@@ -1,4 +1,4 @@
-package com.example.rahal
+package com.example.rahal.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.rahal.R
 import com.example.rahal.adapters.PlacesInCreatedPlanAdapter
-import com.example.rahal.adapters.placesInPlanAdapter
 import com.example.rahal.data.createPlans.PlacesInCreatedPlan
-import com.example.rahal.databinding.FragmentRecommendedPlansBinding
 import com.example.rahal.databinding.FragmentViewYourCreatedPlanBinding
-import com.example.rahal.ui.home.ViewPlaceFragment
 import com.example.rahal.viewModels.ViewModel
 
 

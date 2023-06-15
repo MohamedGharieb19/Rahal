@@ -209,10 +209,9 @@ class ViewModel @Inject constructor(
     fun updatePlan(createdPlan: CreatedPlan) = viewModelScope.launch {
         repository.updateCreatedPlan(createdPlan)
     }
-
-//    fun insertPlacesInCreatedPlan(placesInCreatedPlan: PlacesInCreatedPlan) = viewModelScope.launch {
-//        repository.insertPlacesInCreatedPlan(placesInCreatedPlan)
-//    }
+    fun deletePlan(createdPlan: CreatedPlan) = viewModelScope.launch {
+        repository.deleteCreatedPlan(createdPlan)
+    }
 
     fun getCreatedPlans() = repository.getCreatedPlans
 

@@ -34,13 +34,13 @@ class Repository @Inject constructor(
         databaseCreatedPlan.insert(createdPlan)
     }
 
+    suspend fun deleteCreatedPlan(createdPlan: CreatedPlan){
+        databaseCreatedPlan.deleteCreatedPlan(createdPlan)
+    }
+
     suspend fun updateCreatedPlan(createdPlan: CreatedPlan){
         databaseCreatedPlan.updateCreatedPlan(createdPlan)
     }
-
-//    suspend fun insertPlacesInCreatedPlan(placesInCreatedPlan: PlacesInCreatedPlan){
-//        databasePlacesInCreatedPlan.insert(placesInCreatedPlan)
-//    }
 
     suspend fun upsert(place: Place){
         databaseFavorites.upsert(place)

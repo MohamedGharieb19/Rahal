@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddToCreatedPlansFragment">
+    tools:context=".ui.home.AddToCreatedPlansFragment">
 
     <TextView
         android:id="@+id/title_text_view"
