@@ -23,6 +23,5 @@ interface CreatedPlanDao {
     @Query("SELECT * FROM created_plan_table")
     fun getCreatedPlans(): LiveData<List<CreatedPlan>>
 
-//
 }
 

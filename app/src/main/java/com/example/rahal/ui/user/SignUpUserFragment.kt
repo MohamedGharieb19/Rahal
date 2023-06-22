@@ -13,6 +13,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.rahal.*
 import com.example.rahal.api.HomeApi
 import com.example.rahal.data.RegisterUserRequest
@@ -78,6 +79,18 @@ class SignUpUserFragment : Fragment() {
 
     }
 
+    private fun sendData(){
+        val fragment = FollowSignUpUserFragment()
+        val bundle = Bundle()
+        bundle.putString("fullName",fullNameEditText.text.toString().trim())
+        bundle.putString("email",validateEmailEditText.text.toString().trim())
+        bundle.putString("password",passwordEditText.text.toString().trim())
+        bundle.putString("passwordConfirm",verifyPasswordEditText.text.toString().trim())
+        bundle.putString("role","user")
+        fragment.arguments = bundle
+        findNavController().navigate(R.id.followSignUpUserFragment,bundle)
+    }
+
     private fun signup() {
         val role = "user"
         val response = RegisterUserRequest()
@@ -94,12 +107,12 @@ class SignUpUserFragment : Fragment() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val user = response.body()
                 if (response.code() == 201) {
-                    Log.e("sucess token", user?.token.toString())
-                    Log.e("sucess", user?.data?.user?.name.toString())
-                    Log.e("sucess", user?.data?.user?.email.toString())
-                    Log.e("sucess", user?.data?.user?.password.toString())
-                    Log.e("sucess", user?.data?.user?.role.toString())
-                    Toast.makeText(activity,"Register sucess", Toast.LENGTH_LONG).show()
+                    Log.e("success token", user?.token.toString())
+                    Log.e("success", user?.data?.user?.name.toString())
+                    Log.e("success", user?.data?.user?.email.toString())
+                    Log.e("success", user?.data?.user?.password.toString())
+                    Log.e("success", user?.data?.user?.role.toString())
+                    Toast.makeText(activity,"Register success", Toast.LENGTH_LONG).show()
 
                 }
             }

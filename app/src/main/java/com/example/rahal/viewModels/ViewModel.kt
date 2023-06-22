@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rahal.data.Place
 import com.example.rahal.data.createPlans.CreatedPlan
+import com.example.rahal.data.profile.UserInformation
 import com.example.rahal.data.search.City
 import com.example.rahal.data.suggestedPlans.PlaceInPlan
 import com.example.rahal.data.suggestedPlans.Plan
+import com.example.rahal.data.token.Token
 import com.example.rahal.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -40,6 +42,9 @@ class ViewModel @Inject constructor(
 
     private val _getSearchMutableLiveData = MutableLiveData<List<City>>()
     val getSearchLiveData: LiveData<List<City>> = _getSearchMutableLiveData
+
+    private val _getProfile = MutableLiveData<UserInformation>()
+    val getProfile: LiveData<UserInformation> = _getProfile
 
     private val _getRecommendedPlansMutableLiveData = MutableLiveData<List<Plan>>()
     val getRecommendedPlansLiveData: LiveData<List<Plan>> = _getRecommendedPlansMutableLiveData
@@ -182,6 +187,8 @@ class ViewModel @Inject constructor(
         }
     }
 
+
+
     fun insertPlan(createdPlan: CreatedPlan) = viewModelScope.launch {
         repository.insertCreatedPlan(createdPlan)
     }
@@ -199,11 +206,17 @@ class ViewModel @Inject constructor(
         repository.upsert(place)
     }
 
+    fun insertToken(token: Token) = viewModelScope.launch {
+        repository.insertToken(token)
+    }
+
     fun delete(place: Place) = viewModelScope.launch {
         repository.delete(place)
     }
 
     fun getFavorites() = repository.getFavoritesPlaces
+
+    fun getToken() = repository.getToken
 
     fun saveCity(text: String) {
         repository.saveCity(text)
@@ -213,4 +226,25 @@ class ViewModel @Inject constructor(
         return repository.getSavedCity()
     }
 
+//    fun setToken(token: String) {
+//        repository.setToken(token)
+//        Log.e("ViewModel setTokenFunction", "set Token: $token")
+//    }
+//
+//    fun getToken(): String? {
+//        return repository.getToken()
+//    }
+
+    fun getProfile(token: String){
+       viewModelScope.launch {
+           try {
+               val response = repository.getProfile(token)
+               response.body()!!.data.document.let {
+                   _getProfile.postValue(it)
+               }
+           }catch (t:Throwable){
+               Log.d("testApp",t.message.toString()+ " Error getProfile")
+           }
+       }
+    }
 }

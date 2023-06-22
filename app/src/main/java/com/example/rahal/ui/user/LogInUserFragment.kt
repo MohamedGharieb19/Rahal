@@ -12,15 +12,19 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.rahal.*
 import com.example.rahal.api.HomeApi
 import com.example.rahal.data.UserRequest
 import com.example.rahal.data.UserResponse
+import com.example.rahal.data.token.Token
 import com.example.rahal.databinding.FragmentLogInUserBinding
 import com.example.rahal.module.Retrofit
 import com.example.rahal.ui.home.HomeActivity
 import com.example.rahal.ui.home.ProfileFragment
+import com.example.rahal.viewModels.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Response
@@ -32,6 +36,7 @@ class LogInUserFragment : Fragment() {
     private lateinit var passwordEditText: EditText
     private lateinit var emailErrorMessage: TextView
     private lateinit var passwordErrorMessage: TextView
+    private val viewModel: ViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -77,13 +82,9 @@ class LogInUserFragment : Fragment() {
                     Log.e("success", user!!.data?.user?.name.toString())
                     Log.e("success", user!!.data?.user?.email.toString())
 
-                    val bundle = Bundle()
-                    bundle.putString("name", user.data?.user?.name)
-                    bundle.putString("email", user.data?.user?.email)
-
-                    val profileFragment = ProfileFragment()
-                    profileFragment.arguments = bundle
-
+                    val token = Token(user!!.token.toString())
+                    viewModel.insertToken(token)
+                    Log.e("get token" , "get token ${token}")
 
                     val intent = Intent(activity,HomeActivity::class.java)
                     startActivity(intent)

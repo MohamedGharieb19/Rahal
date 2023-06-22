@@ -1,6 +1,7 @@
 package com.example.rahal.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -90,6 +91,7 @@ class HomePageFragment : Fragment() {
         }
 
 
+
     }
     private fun intilaizeVariables(){
         recommendedViewAll = binding.recommendedViewAll
@@ -132,7 +134,7 @@ class HomePageFragment : Fragment() {
     }
     private fun getRecommended(){
         setupRecommendedRecyclerView()
-        viewModel.getRecommended("10")
+        viewModel.getRecommended("-rating")
         viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
             recommendedAdapter.differ.submitList(it)
         })
@@ -247,7 +249,7 @@ class HomePageFragment : Fragment() {
         super.onPause()
         viewModel.saveCity(setCity.text.toString())
     }
-//
+
 }
 
 

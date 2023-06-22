@@ -47,6 +47,10 @@ class ViewAllAdapter(): RecyclerView.Adapter<ViewAllAdapter.ViewHolder>() {
         holder.binding.starIcon.rating = data.rating.toFloat()
         holder.binding.locationPlace.text = data.location.address
 
+        if (data.image.isNullOrEmpty()){
+            holder.binding.imageCircleId.setImageResource(R.drawable.museums)
+        }
+
         holder.itemView.setOnClickListener {
             onPlaceItemClick.invoke(data)
         }

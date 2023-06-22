@@ -14,11 +14,15 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rahal.R
 import com.example.rahal.databinding.FragmentProfileBinding
 import com.example.rahal.ui.user.LogInUserFragment
 import com.example.rahal.ui.user.MainActivity
+import com.example.rahal.viewModels.ViewModel
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +35,7 @@ class ProfileFragment : Fragment(), NavigationView.OnNavigationItemSelectedListe
     private lateinit var navigationView: NavigationView
     private lateinit var closeButton:ImageButton
     private lateinit var profileImageView: ImageView
+    private val viewModel: ViewModel by viewModels()
     companion object {
         const val PICK_IMAGE_REQUEST = 1
     }
@@ -42,15 +47,13 @@ class ProfileFragment : Fragment(), NavigationView.OnNavigationItemSelectedListe
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater,container,false)
-
-        intilaizeVariable()
-
         return binding.root
     }
 
      override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+            intilaizeVariable()
+            getToken()
 
 
          settingButton.setOnClickListener {
@@ -100,7 +103,23 @@ class ProfileFragment : Fragment(), NavigationView.OnNavigationItemSelectedListe
         }
     }
 
+    private fun getToken(){
+        val getToken = viewModel.getToken().observe(viewLifecycleOwner, Observer {
+            Log.e("get token" , "get token ${it.token}")
+            getProfile(it.token)
+        })
+    }
 
+    private fun getProfile(token: String) {
+        viewModel.getProfile(token)
+        viewModel.getProfile.observe(viewLifecycleOwner, Observer {
+
+            binding.emailEditText.hint = it.email
+            binding.fullNameEditText.hint = it.name
+            Log.e("user info","email: ${it.email} , name: ${it.name}")
+        })
+
+    }
 
 
 }

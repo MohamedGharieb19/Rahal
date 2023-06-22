@@ -7,11 +7,14 @@ import com.example.rahal.data.PlaceList
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
 import com.example.rahal.data.createPlans.CreatedPlan
+import com.example.rahal.data.profile.Profile
 import com.example.rahal.data.search.Search
 import com.example.rahal.data.suggestedPlans.suggestedPlans
+import com.example.rahal.data.token.Token
 import com.example.rahal.database.PlaceDataBase
 import retrofit2.Response
 import javax.inject.Inject
+import kotlin.math.log
 
 class Repository @Inject constructor(
     private val homeApi: HomeApi,
@@ -23,6 +26,9 @@ class Repository @Inject constructor(
 
     private val databaseCreatedPlan = placeDataBase.createdPlanDao()
     val getCreatedPlans = databaseCreatedPlan.getCreatedPlans()
+
+    private val databaseToken = placeDataBase.tokenDao()
+    val getToken = databaseToken.getToken()
 
     suspend fun insertCreatedPlan(createdPlan: CreatedPlan){
         databaseCreatedPlan.insert(createdPlan)
@@ -39,10 +45,15 @@ class Repository @Inject constructor(
     suspend fun upsert(place: Place){
         databaseFavorites.upsert(place)
     }
+    suspend fun insertToken(token: Token){
+        databaseToken.insert(token)
+    }
 
     suspend fun delete(place: Place){
         databaseFavorites.delete(place)
     }
+
+
 
     suspend fun getSearch(searchQuery: String): Response<Search>{
         val response = homeApi.searchForPlaces(searchQuery)
@@ -115,13 +126,21 @@ class Repository @Inject constructor(
     }
     private var savedText: String? = null
 
-
     fun saveCity(text: String) {
         savedText = text
     }
 
     fun getSavedCity(): String? {
         return savedText
+    }
+    suspend fun getProfile(token: String): Response<Profile>{
+        val response = homeApi.getProfile("Bearer $token")
+        if (response.isSuccessful){
+            Log.d("TestApp","Success to connect getProfile() : ${response.body()}")
+        }else {
+            Log.d("TestApp","Failed to connected getProfile(): ${response.code()}")
+        }
+        return response
     }
 
     suspend fun getRecommendedPlans(): Response<suggestedPlans> {

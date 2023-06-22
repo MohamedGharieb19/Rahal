@@ -7,12 +7,14 @@ import com.example.rahal.data.UserRequest
 import com.example.rahal.data.UserResponse
 import com.example.rahal.data.activites.Activities
 import com.example.rahal.data.activitiesContent.Content
+import com.example.rahal.data.profile.Profile
 import com.example.rahal.data.search.Search
 import com.example.rahal.data.suggestedPlans.suggestedPlans
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -63,4 +65,9 @@ interface HomeApi {
 
     @GET("cities/plans/generate")
     suspend fun recommendedPlanss(): Response<suggestedPlans>
+
+    @GET("users/me")
+    suspend fun getProfile(
+        @Header("Authorization") token: String
+    ): Response<Profile>
 }

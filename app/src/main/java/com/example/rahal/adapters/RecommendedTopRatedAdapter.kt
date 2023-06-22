@@ -50,6 +50,10 @@ class RecommendedTopRatedAdapter(): RecyclerView.Adapter<RecommendedTopRatedAdap
         holder.binding.placeTextView.text = data.name
         holder.binding.locationPlace.text = data.location.address
 
+        if (data.image.isNullOrEmpty()){
+            holder.binding.imageViewId.setImageResource(R.drawable.museums)
+        }
+
         holder.itemView.setOnClickListener {
             onPlaceItemClick.invoke(data)
         }
