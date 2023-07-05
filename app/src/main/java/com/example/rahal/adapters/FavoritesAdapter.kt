@@ -43,10 +43,14 @@ class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.viewHolder>()  {
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val data = differ.currentList[position]
-        Glide.with(holder.itemView).load(data.image).into(holder.binding.imageViewId)
         holder.binding.rateTextView.text = data.rating.toString()
         holder.binding.placeTextView.text = data.name
         holder.binding.locationPlace.text = data.location.address
+
+        if(data.image.isNullOrEmpty()){
+            data.image = "https://media-cdn.tripadvisor.com/media/photo-o/09/60/28/be/nino-s-italian-restaurant.jpg"
+
+        }
 
         holder.binding.favoriteIcon.setOnClickListener {
             holder.binding.favoriteIcon.setImageResource(R.drawable.ic_favorite)

@@ -6,5 +6,8 @@ data class UserInformation(
     val email: String,
     val id: String,
     val name: String,
-    val role: String
+    val role: String,
+    val phoneNumber: String,
+    val gender: String,
+    val city: String
 )

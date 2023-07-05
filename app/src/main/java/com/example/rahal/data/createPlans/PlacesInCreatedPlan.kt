@@ -3,7 +3,6 @@ package com.example.rahal.data.createPlans
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.rahal.data.Location
 import kotlinx.parcelize.Parcelize
 
 

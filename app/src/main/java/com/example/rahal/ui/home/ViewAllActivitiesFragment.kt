@@ -79,7 +79,7 @@ class ViewAllActivitiesFragment : Fragment() {
                     viewAllAdapter.differ.submitList(it)
                 })
             }else{
-                viewModel.getRecommendedForSpecificCity(city.text.toString())
+                viewModel.getRecommendedForSpecificCity(city.text.toString(),"numberOfReviews")
                 viewModel.getRecommendedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
                     viewAllAdapter.differ.submitList(it)
                 })
@@ -91,7 +91,7 @@ class ViewAllActivitiesFragment : Fragment() {
                     viewAllAdapter.differ.submitList(it)
                 })
             }else{
-                viewModel.getTopRatedForSpecificCity(city.text.toString())
+                viewModel.getTopRatedForSpecificCity(city.text.toString(),"-rating")
                 viewModel.getTopRatedForSpecificCityLiveData.observe(viewLifecycleOwner, Observer {
                     viewAllAdapter.differ.submitList(it)
                 })

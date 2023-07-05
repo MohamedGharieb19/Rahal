@@ -13,6 +13,8 @@ interface TokenDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(token: Token)
 
-    @Query("SELECT * FROM token")
+    @Query("SELECT * FROM token\n" +
+            "ORDER BY token DESC\n" +
+            "LIMIT 1;")
     fun getToken(): LiveData<Token>
 }

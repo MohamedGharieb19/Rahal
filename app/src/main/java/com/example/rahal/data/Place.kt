@@ -11,7 +11,7 @@ data class Place(
     val activityDesctiptor: List<String>,
     val description: String,
     //val id: String,
-    val image: String,
+    var image: String? = "https://media-cdn.tripadvisor.com/media/photo-o/09/60/28/be/nino-s-italian-restaurant.jpg",
     val location: Location,
     val name: String,
     val num_reviews: Int,

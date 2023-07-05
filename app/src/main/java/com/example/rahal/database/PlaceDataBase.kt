@@ -9,7 +9,7 @@ import com.example.rahal.data.createPlans.PlacesInCreatedPlan
 import com.example.rahal.data.token.Token
 
 
-@Database(entities = [Place::class, CreatedPlan::class, PlacesInCreatedPlan::class, Token::class], version = 15)
+@Database(entities = [Place::class, CreatedPlan::class, PlacesInCreatedPlan::class, Token::class], version = 16)
 @TypeConverters(PlaceTypeConverter::class)
 abstract class PlaceDataBase: RoomDatabase() {
     abstract fun placeDao():PlaceDao

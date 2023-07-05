@@ -50,7 +50,5 @@ import com.google.gson.annotations.SerializedName
 
 	 @field:SerializedName("birthDate")
 	 val birthDate: String? = null,
-
-
 )
  }

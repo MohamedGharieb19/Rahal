@@ -14,7 +14,7 @@ import com.example.rahal.data.token.Token
 import com.example.rahal.database.PlaceDataBase
 import retrofit2.Response
 import javax.inject.Inject
-import kotlin.math.log
+
 
 class Repository @Inject constructor(
     private val homeApi: HomeApi,
@@ -75,8 +75,8 @@ class Repository @Inject constructor(
         return response
     }
 
-    suspend fun getRecommendedForSpecificCity(cityName: String): Response<Content>{
-        val response = homeApi.getAttractionsForSpecificCity(cityName)
+    suspend fun getRecommendedForSpecificCity(cityName: String,sort: String): Response<Content>{
+        val response = homeApi.getAttractionsForSpecificCity(cityName,sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
         }else {
@@ -95,8 +95,8 @@ class Repository @Inject constructor(
         return response
     }
 
-    suspend fun getTopRatedForSpecificCity(cityName: String): Response<Content>{
-        val response = homeApi.getAttractionsForSpecificCity(cityName)
+    suspend fun getTopRatedForSpecificCity(cityName: String,sort: String): Response<Content>{
+        val response = homeApi.getAttractionsForSpecificCity(cityName,sort)
         if (response.isSuccessful){
             Log.d("TestApp","Success to connect getAttractions() : ${response.body()}")
         }else {

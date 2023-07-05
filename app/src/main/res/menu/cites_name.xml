@@ -9,10 +9,6 @@
         android:title="alexandria" />
 
     <item
-        android:id="@+id/portSaid"
-        android:title="PortSaid" />
-
-    <item
         android:id="@+id/Hurghada"
         android:title="Hurghada" />
 

@@ -65,6 +65,12 @@ class LogInUserFragment : Fragment() {
         }
 
         binding.floatingButton.setOnClickListener { login() }
+
+        binding.guestTextView.setOnClickListener {
+            val intent = Intent(activity,HomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
     private fun login() {
@@ -82,7 +88,7 @@ class LogInUserFragment : Fragment() {
                     Log.e("success", user!!.data?.user?.name.toString())
                     Log.e("success", user!!.data?.user?.email.toString())
 
-                    val token = Token(user!!.token.toString())
+                    val token = Token(1,user!!.token.toString())
                     viewModel.insertToken(token)
                     Log.e("get token" , "get token ${token}")
 

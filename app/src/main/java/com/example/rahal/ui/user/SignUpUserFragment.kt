@@ -1,5 +1,6 @@
 package com.example.rahal.ui.user
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.animation.EnterExitState
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -20,6 +23,7 @@ import com.example.rahal.data.RegisterUserRequest
 import com.example.rahal.data.UserResponse
 import com.example.rahal.databinding.FragmentSignUpUserBinding
 import com.example.rahal.module.Retrofit
+import com.example.rahal.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,22 +63,27 @@ class SignUpUserFragment : Fragment() {
         validateVerifyPassword()
 
         binding.backArrowButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.logInUserFragment)
+            requireActivity().onBackPressed()
         }
         binding.logInTextVeiw.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.logInUserFragment)
         }
 
-        binding.floatingButton.setOnClickListener {
-//            if (fullNameEditText.text.toString().isNotEmpty() &&
-//                validateEmailEditText.text.toString().isNotEmpty() &&
-//                passwordEditText.text.toString().isNotEmpty() &&
-//                verifyPasswordEditText.text.toString().isNotEmpty() ){
-//
-//                Navigation.findNavController(view).navigate(R.id.followSignUpUserFragment)
-//            }
+        binding.guestTextView.setOnClickListener {
+            val intent = Intent(activity, HomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
-            signup()
+        binding.floatingButton.setOnClickListener {
+            if (fullNameEditText.text.isNullOrEmpty() &&
+                validateEmailEditText.text.isNullOrEmpty() &&
+                passwordEditText.text.isNullOrEmpty() &&
+                verifyPasswordEditText.text.isNullOrEmpty()
+            ){ }else{
+                sendData()
+            }
+
         }
 
     }

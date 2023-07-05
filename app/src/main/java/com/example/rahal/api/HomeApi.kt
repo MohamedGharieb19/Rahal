@@ -36,12 +36,13 @@ interface HomeApi {
 
     @GET("attractions")
     suspend fun getAttractions(
-        @Query("limit") sort: String
+        @Query("sort") sort: String
     ): Response<PlaceList>
 
     @GET("cities/city/{city}/attractions")
     suspend fun getAttractionsForSpecificCity(
         @Path("city") city: String,
+        @Query("sort") sort: String
     ): Response<Content>
 
     @GET("cities/activties/city/{city}/attractions")

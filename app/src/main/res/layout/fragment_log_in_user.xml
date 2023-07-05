@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.user.LogInUserFragment">
+    tools:context=".ui.user.LogInUserFragment"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/signup_background">
+        android:background="@drawable/signup_background"
+        >
 
         <ImageView
             android:id="@+id/image_view"
@@ -139,6 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Register now"
+            android:paddingBottom="10dp"
             android:textColor="#E76D24"
             app:layout_constraintStart_toEndOf="@id/new_member_text_view"
             app:layout_constraintTop_toTopOf="@id/new_member_text_view"
@@ -149,6 +152,7 @@
             android:layout_height="wrap_content"
             android:text="Continue as a guest"
             android:textColor="#E76D24"
+            android:padding="10dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/new_member_text_view"
             app:layout_constraintEnd_toEndOf="@id/register_now_text_veiw"

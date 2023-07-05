@@ -116,7 +116,9 @@ class ProfileFragment : Fragment(), NavigationView.OnNavigationItemSelectedListe
 
             binding.emailEditText.hint = it.email
             binding.fullNameEditText.hint = it.name
-            Log.e("user info","email: ${it.email} , name: ${it.name}")
+            binding.phoneNumberEditText.hint = it.phoneNumber
+            binding.cityEditText.hint = it.city
+            Log.e("user info","email: ${it.email} , name: ${it.name}, phone: ${it.phoneNumber}")
         })
 
     }

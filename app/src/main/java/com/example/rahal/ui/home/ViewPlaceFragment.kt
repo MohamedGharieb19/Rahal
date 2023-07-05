@@ -53,7 +53,10 @@ class ViewPlaceFragment : Fragment() {
 
         options.setOnClickListener { showPopupMenu() }
 
-        binding.mapView.setOnClickListener {openMaps() }
+        binding.mapView.setOnClickListener {
+            val intentUri = "geo:0,0"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri))
+            startActivity(intent) }
 
         binding.addToPlanButton.setOnClickListener { onAddToPlanButtonClick() }
 
@@ -67,7 +70,8 @@ class ViewPlaceFragment : Fragment() {
             val latitude = matcher.group(1)
             val longitude = matcher.group(2)
 
-            val intentUri = "geo:$latitude,$longitude"
+            //val intentUri = "geo:$latitude,$longitude"
+            val intentUri = "geo:0,0?q=<destination>"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri))
             startActivity(intent)
         }

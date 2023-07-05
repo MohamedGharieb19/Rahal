@@ -66,10 +66,10 @@ class ViewModel @Inject constructor(
         }
     }
 
-    fun getRecommendedForSpecificCity(cityName: String){
+    fun getRecommendedForSpecificCity(cityName: String,sort: String){
         viewModelScope.launch {
             try {
-                val response = repository.getRecommendedForSpecificCity(cityName)
+                val response = repository.getRecommendedForSpecificCity(cityName,sort)
 
                 response.body()!!.data.attractions.let {
                     _getRecommendedForSpecificCityMutableLiveData.postValue(it)
@@ -96,10 +96,10 @@ class ViewModel @Inject constructor(
         }
     }
 
-    fun getTopRatedForSpecificCity(cityName: String){
+    fun getTopRatedForSpecificCity(cityName: String,sort: String){
         viewModelScope.launch {
             try {
-                val response = repository.getTopRatedForSpecificCity(cityName)
+                val response = repository.getTopRatedForSpecificCity(cityName,sort)
 
                 response.body()!!.data.attractions.let {
                     _getTopRatedForSpecificCityMutableLiveData.postValue(it)
@@ -225,15 +225,6 @@ class ViewModel @Inject constructor(
     fun getSavedCity(): String? {
         return repository.getSavedCity()
     }
-
-//    fun setToken(token: String) {
-//        repository.setToken(token)
-//        Log.e("ViewModel setTokenFunction", "set Token: $token")
-//    }
-//
-//    fun getToken(): String? {
-//        return repository.getToken()
-//    }
 
     fun getProfile(token: String){
        viewModelScope.launch {

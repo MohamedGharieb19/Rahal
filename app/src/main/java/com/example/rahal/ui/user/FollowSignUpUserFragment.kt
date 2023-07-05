@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.rahal.R
 import com.example.rahal.api.HomeApi
 import com.example.rahal.data.RegisterUserRequest
@@ -65,7 +66,7 @@ class FollowSignUpUserFragment : Fragment(){
            validateBirthDate()
            //validateGender()
         binding.backArrowButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.signUpUserFragment)
+            requireActivity().onBackPressed()
         }
 
         binding.logInTextVeiw.setOnClickListener {
@@ -74,6 +75,7 @@ class FollowSignUpUserFragment : Fragment(){
 
         binding.floatingButton.setOnClickListener {
             signup()
+
         }
 
 
@@ -115,7 +117,6 @@ class FollowSignUpUserFragment : Fragment(){
         response.role = role
         response.gender = genderFieldEditText.text.toString().trim()
         response.phoneNumber = phoneEditText.text.toString().trim()
-        response.birthDate = birthDateEditText.text.toString().trim()
         response.city = cityEditText.text.toString().trim()
 
 
@@ -131,9 +132,8 @@ class FollowSignUpUserFragment : Fragment(){
                     Log.e("success", user?.data?.user?.role.toString())
                     Log.e("success", user?.data?.user?.phoneNumber.toString())
                     Log.e("success", user?.data?.user?.gender.toString())
-                    Log.e("success", user?.data?.user?.birthDate.toString())
                     Toast.makeText(activity,"Register success", Toast.LENGTH_LONG).show()
-
+                    findNavController().navigate(R.id.logInUserFragment)
                 }
             }
 

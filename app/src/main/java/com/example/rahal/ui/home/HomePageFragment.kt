@@ -127,14 +127,14 @@ class HomePageFragment : Fragment() {
     }
     private fun getTopRated(){
         setupTopRatedRecyclerView()
-        viewModel.getTopRated("10")
+        viewModel.getTopRated("-rating")
         viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
             topRatedAdapter.differ.submitList(it)
         })
     }
     private fun getRecommended(){
         setupRecommendedRecyclerView()
-        viewModel.getRecommended("-rating")
+        viewModel.getRecommended("-numberOfReviews")
         viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
             recommendedAdapter.differ.submitList(it)
         })
@@ -142,7 +142,7 @@ class HomePageFragment : Fragment() {
 
     private fun getRecommendedForSpecificCity(cityName: String){
         setupRecommendedRecyclerView()
-        viewModel.getRecommendedForSpecificCity(cityName)
+        viewModel.getRecommendedForSpecificCity(cityName,"numberOfReviews")
 
         viewModel.getRecommendedLiveData.observe(viewLifecycleOwner, Observer {
             recommendedAdapter.differ.submitList(null)
@@ -155,7 +155,7 @@ class HomePageFragment : Fragment() {
 
     private fun getTopRatedForSpecificCity(cityName: String){
         setupTopRatedRecyclerView()
-        viewModel.getTopRatedForSpecificCity(cityName)
+        viewModel.getTopRatedForSpecificCity(cityName,"-rating")
 
         viewModel.getTopRatedLiveData.observe(viewLifecycleOwner, Observer {
             topRatedAdapter.differ.submitList(null)
@@ -222,7 +222,11 @@ class HomePageFragment : Fragment() {
         topRatedAdapter.onPlaceItemClick = { data ->
             val fragment = ViewPlaceFragment()
             val bundle = Bundle()
-            bundle.putString("image",data.image)
+            if(data.image.isNullOrEmpty()){
+                bundle.putString("image","https://media-cdn.tripadvisor.com/media/photo-o/09/60/28/be/nino-s-italian-restaurant.jpg")
+            }else{
+                bundle.putString("image",data.image)
+            }
             bundle.putDouble("rate",data.rating)
             bundle.putString("title",data.name)
             bundle.putString("reviews",data.num_reviews.toString())
